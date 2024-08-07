@@ -47,6 +47,7 @@ const SendComponent = () => {
 
     //console.log(sellerUser)
     //console.log(session)
+    console.log(totalEntrieProducts)
   
     const dataToSend = {
         user: session?.user?._id,
@@ -267,7 +268,7 @@ const SendComponent = () => {
 
 
 
-  //console.log(portNumbers)
+  console.log(dataToSend)
   return (
     <div className='flex flex-col justify-end my-4 mx-6 gap-2'>
 

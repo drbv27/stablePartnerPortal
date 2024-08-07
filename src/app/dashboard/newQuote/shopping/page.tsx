@@ -34,7 +34,7 @@ export default async function ShoppingPage() {
   //console.log('session.user:', session.user);
   //console.log('sellerUser[0]:', sellerUser[0]);
   //console.log(sellerUser[0])
-  console.log(session)
+  //console.log(session)
   return (
     <div className="h-[94vh] md:h-[88vh] overflow-y-auto">
       <h2 className="text-center font-bold text-lg text-orange-900">Review your Quote</h2>

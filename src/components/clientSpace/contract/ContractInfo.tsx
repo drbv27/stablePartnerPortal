@@ -25,7 +25,7 @@ const ContractInfo = ({company,dataAll}:any) => {
       }
 
       const seller = sellers ? (sellers as any).filter((seller:any) => seller._id === dataAll.user) : [];
-      console.log(seller)
+      //console.log(seller)
     //console.log(dataAll)
   return (
     <div className="w-full border border-gray-300 mt-4 p-2 md:p-4 rounded-md">

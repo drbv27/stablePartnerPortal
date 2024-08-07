@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from "zustand/middleware";
+import { set } from 'mongoose';
 
 interface EntrieProduct {
     id: string | undefined;
@@ -10,7 +11,6 @@ interface EntrieProduct {
     total: number;
     recurrent: boolean;
     quantity: number;
-    taxes: boolean; // Added taxes field
 }
 
 interface Products {
@@ -27,8 +27,8 @@ export const useTotalEntrieProducts = create<Products>(
             totalEntrieProducts: [],
             addEntrieProducts: (array: Array<EntrieProduct>) => set((state) => ({ totalEntrieProducts: [...state.totalEntrieProducts, ...array] })),
             removeEntrieProducts: (array: Array<EntrieProduct>) => set((state) => ({ totalEntrieProducts: [...array]})),
-            setEntrieProducts: (array: Array<EntrieProduct>) => set({ totalEntrieProducts: array }),
-            resetEntrieProducts: () => set({ totalEntrieProducts: [] }),
+            setEntrieProducts: (array: Array<EntrieProduct>) => set({ totalEntrieProducts: array }), // set totalProducts to the array passed as argument
+            resetEntrieProducts: () => set({ totalEntrieProducts: [] }), // reset totalProducts to an empty array
         }),
         /* { name:"productsOrdered"} */
     /* ) */

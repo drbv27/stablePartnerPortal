@@ -1,12 +1,15 @@
 import { Document, Page, Text, View, StyleSheet,Image, Font,pdf } from '@react-pdf/renderer'
 
 
-const ReactPdfc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalFax,totalConference}) => {
+const ReactPdfc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalFax,totalConference,portNumbers,specialTerms}) => {
 
-  let monthlyTotal = 0;
+    let monthlyTotal = 0;
     let oneTimeTotal = 0;
     let monthlyEntries = 0;
     let oneTimeEntries = 0;
+    let oneTimeTax = 0;
+
+    const TAX_RATE = 0.0775; // 7.75% tax rate
 
     //console.log(totalProducts)
 
@@ -14,17 +17,26 @@ const ReactPdfc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalFa
     const Users = {title:'Nationwide Unlimited Calling: Business VoIP Phone Service',price:24.99,total:totalUsers}
     const Fax = {title:'Nationwide Unlimited EFax service',price:7.99,total:totalFax}
     const Conference = {title:'Conference',price:14.99,total:totalConference}
+    const PortNumbers = {title:'Port Numbers',price:2.00,total:portNumbers.length}
     //***********ojo este debe venir de la db******//
 
     if (totalProducts.length !== 0) {
         monthlyTotal = totalProducts.reduce((acc, product) => product.recurrent ? acc + product.total * product.price : acc, 0)
         oneTimeTotal = totalProducts.reduce((acc, product) => !product.product.recurrent ? acc + product.quantity * product.product.price : acc, 0)
-    }
+        oneTimeTax = totalProducts.reduce((acc, product) => (!product.product.recurrent && product.taxes) ? acc + product.quantity * product.product.price * TAX_RATE : acc, 0)
+      }
     if (totalEntrieProducts.length !== 0) {
         monthlyEntries = totalEntrieProducts.reduce((acc, product) => product.recurrent ? acc + product.quantity * product.price : acc, 0)
         oneTimeEntries = totalEntrieProducts.reduce((acc, product) => !product.recurrent ? acc + product.quantity * product.price : acc, 0)
-    }
+        oneTimeTax += totalEntrieProducts.reduce((acc, product) => (!product.recurrent && product.taxes) ? acc + Number(product.quantity) * Number(product.price) * TAX_RATE : acc, 0)
+      }
     
+    if (portNumbers.length > 2) {
+      monthlyTotal += monthlyEntries+Users.total*Users.price+Fax.total*Fax.price+Conference.total*Conference.price+((portNumbers.length - 2) * 2.00);
+    } else {
+      monthlyTotal += monthlyEntries+Users.total*Users.price+Fax.total*Fax.price+Conference.total*Conference.price;
+    }
+
     monthlyTotal += monthlyEntries+Users.total*Users.price+Fax.total*Fax.price+Conference.total*Conference.price;
     oneTimeTotal += oneTimeEntries;
     monthlyTotal = parseFloat(monthlyTotal.toFixed(2));
@@ -203,32 +215,34 @@ const ReactPdfc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalFa
               marginBottom: 5, 
               paddingBottom: 5,
             }}>
-            <Text style={{ width: '50%',fontSize:'10px' }}>Item</Text>
-            <Text style={{ width: '16%', textAlign:'center',fontSize:'10px' }}>Quantity</Text>
-
-            <Text style={{ width: '17%', textAlign:'right',fontSize:'10px' }}>Rate</Text>
-            <Text style={{ width: '17%', textAlign:'right',fontSize:'10px' }}>Total</Text>
+            <Text style={{ width: '40%',fontSize:'10px' }}>Item</Text>
+            <Text style={{ width: '15%', textAlign:'center',fontSize:'10px' }}>Quantity</Text>
+            <Text style={{ width: '15%', textAlign:'right',fontSize:'10px' }}>Rate</Text>
+            <Text style={{ width: '15%', textAlign:'right',fontSize:'10px' }}>Total</Text>
+            <Text style={{ width: '15%', textAlign:'right',fontSize:'10px' }}>Taxes</Text>
           </View>
           {totalProducts && totalProducts.filter(product => !product.product.recurrent).map((product, index) => (
               <View key={index} style={{ flexDirection: 'row', borderBottom: '1pt solid black', marginBottom: 5, paddingBottom: 5 }}>
-                <Text style={{ width: '50%',fontSize:'10px' }}>{product.product.title} | <Text style={{ fontSize: '8px' }}>{product.product.description}</Text></Text>
-                <Text style={{ width: '16%', textAlign:'center',fontSize:'10px' }}>{product.quantity}</Text>
-                <Text style={{ width: '17%', textAlign:'right',fontSize:'10px' }}>${product.product.price.toFixed(2)}</Text>
-                <Text style={{ width: '17%', textAlign:'right',fontSize:'10px' }}>{(product.quantity * product.product.price).toFixed(2)}</Text>
+                <Text style={{ width: '40%',fontSize:'10px' }}>{product.product.title} | <Text style={{ fontSize: '8px' }}>{product.product.description}</Text></Text>
+                <Text style={{ width: '15%', textAlign:'center',fontSize:'10px' }}>{product.quantity}</Text>
+                <Text style={{ width: '15%', textAlign:'right',fontSize:'10px' }}>${product.product.price.toFixed(2)}</Text>
+                <Text style={{ width: '15%', textAlign:'right',fontSize:'10px' }}>{(product.quantity * product.product.price).toFixed(2)}</Text>
+                <Text style={{ width: '15%', textAlign:'right',fontSize:'10px' }}>${product.taxes ? (product.quantity * product.product.price * TAX_RATE).toFixed(2) : '0.00'}</Text>
               </View>
           ))}
           {totalEntrieProducts && totalEntrieProducts.filter(product => !product.recurrent).map((product, index) => (
               <View key={index} style={{ flexDirection: 'row', borderBottom: '1pt solid black', marginBottom: 5, paddingBottom: 5 }}>
-                <Text style={{ width: '50%',fontSize:'10px' }}>{product.title}</Text>
-                <Text style={{ width: '16%', textAlign:'center',fontSize:'10px' }}>{product.quantity}</Text>
-                <Text style={{ width: '17%', textAlign:'right',fontSize:'10px' }}>${Number(product.price).toFixed(2)}</Text>
-                <Text style={{ width: '17%', textAlign:'right',fontSize:'10px' }}>${Number(product.quantity * product.price).toFixed(2)}</Text>
+                <Text style={{ width: '40%',fontSize:'10px' }}>{product.title}</Text>
+                <Text style={{ width: '15%', textAlign:'center',fontSize:'10px' }}>{product.quantity}</Text>
+                <Text style={{ width: '15%', textAlign:'right',fontSize:'10px' }}>${Number(product.price).toFixed(2)}</Text>
+                <Text style={{ width: '15%', textAlign:'right',fontSize:'10px' }}>${Number(product.quantity * product.price).toFixed(2)}</Text>
+                <Text style={{ width: '15%', textAlign:'right',fontSize:'10px' }}>${product.taxes ? (Number(product.quantity) * Number(product.price) * TAX_RATE).toFixed(2) : '0.00'}</Text>
               </View>
           ))}
           <View style={{ flexDirection: 'row', borderBottom: '1pt solid black', marginBottom: 5, paddingBottom: 5 }}>
             <Text style={{ width: '66%',fontSize:'10px' }}>Sales Taxes</Text>
-            <Text style={{ width: '17%', textAlign:'right',fontSize:'10px' }}>7.75%</Text>
-            <Text style={{ width: '17%', textAlign:'right',fontSize:'10px' }}>${(oneTimeTotal*0.0775).toFixed(2)}</Text>
+            <Text style={{ width: '17%', textAlign:'right',fontSize:'10px' }}>{(TAX_RATE * 100).toFixed(2)}%</Text>
+            <Text style={{ width: '17%', textAlign:'right',fontSize:'10px' }}>${oneTimeTax.toFixed(2)}</Text>
           </View>
           <View 
             style={{ 
@@ -239,7 +253,7 @@ const ReactPdfc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalFa
               backgroundColor:'#DCDCDC',
             }}>
             <Text style={{ width: '83%',fontSize:'12px' }}>Total One time Charges</Text>
-            <Text style={{ width: '17%', textAlign:'right', fontWeight:'bold',fontSize:'12px' }}>${(oneTimeTotal+oneTimeTotal*0.0775).toFixed(2)}</Text>
+            <Text style={{ width: '17%', textAlign:'right', fontWeight:'bold',fontSize:'12px' }}>${(oneTimeTotal + oneTimeTax).toFixed(2)}</Text>
           </View>
 
         </Page>

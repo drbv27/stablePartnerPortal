@@ -128,7 +128,7 @@ const SendMail: React.FC<ManageApprovedProps> = ({quote}) => {
       <h1 className='text-2xl text-center font-semibold text-orange-800'>Send Quote to Client</h1>
       <h2 className='text-lg text-center'>Please review the quote before sending,and follow the steps:</h2>
       <h2 className='pl-2'>1.<span className='text-orange-500'>Download the pdf </span> file to your local machine first 🔽</h2>
-      <PDFViewer style={{ width: "100%", height: "45vh", padding:"1vw" }}>
+{/*       <PDFViewer style={{ width: "100%", height: "45vh", padding:"1vw" }}>
         <ReactPdfs 
           company={quote.company} 
           totalProducts={quote.totalProducts}
@@ -137,7 +137,7 @@ const SendMail: React.FC<ManageApprovedProps> = ({quote}) => {
           totalFax={quote.totalFax}
           totalConference={quote.totalConference}
         />
-      </PDFViewer>
+      </PDFViewer> */}
       <form onSubmit={handleSubmit(onSubmit)}>
 
         <div className='border rounded p-2 bg-white mx-4 shadow-xl'>
