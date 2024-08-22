@@ -51,9 +51,9 @@ const EditEntries = ({quote, id}: any) => {
     return (
         <div className='h-[100vh] flex flex-col'>
             <TopbarEdit id={id}/>
-            <div className='h-[90vh] flex'> 
+            <div className='h-[90vh] flex flex-col md:flex-row'> 
                 {eProducts.length > 0 ? (
-                    <div className='h-[90vh] overflow-y-auto w-1/2'>
+                    <div className='h-[40vh] md:h-[90vh] overflow-y-auto w-[80vw] md:w-1/2'>
                         <h2 className='text-2xl font-bold text-orange-900 text-center mt-1 mb-1'>Actual Entries</h2>
                         {eProducts.map((product: any, index: number) => (
                             <div key={product.id} className='border border-gray-300 shadow-md rounded-lg px-2 py-1 mt-1 ml-4 mr-4'>
@@ -144,7 +144,7 @@ const EditEntries = ({quote, id}: any) => {
                         <p className="text-gray-500">Add your first entry using the form below.</p>
                     </div>
                 )}
-                <div className='h-[65vh] w-1/2'>
+                <div className='md:h-[65vh] md:w-1/2'>
                     <div className="px-6 mt-2">
                         <h2 className="text-center text-2xl text-orange-900">Add New Product or Service</h2>
                         <p>Please fill in all the fields below to add to the quote.</p>
