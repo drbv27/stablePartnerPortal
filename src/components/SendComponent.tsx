@@ -268,7 +268,7 @@ const SendComponent = () => {
 
 
 
-  console.log(dataToSend)
+  //console.log(dataToSend)
   return (
     <div className='flex flex-col justify-end my-4 mx-6 gap-2'>
 

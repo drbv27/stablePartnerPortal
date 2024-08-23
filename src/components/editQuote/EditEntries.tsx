@@ -68,14 +68,14 @@ const EditEntries = ({quote, id}: any) => {
                                             className='font-semibold px-1 border border-gray-300 rounded ms-1'
                                         />
                                         </div>
-                                                                            <div className='flex justify-end'>
-                                    <button 
-                                        className='bg-red-500 text-white font-semibold m-2 rounded-xl'
-                                        onClick={() => setEProducts(eProducts.filter((_:any, i:any) => i !== index))}
-                                    >
-                                        <MdDeleteForever size={20}/>
-                                    </button>
-                                </div>
+                                    <div className='flex justify-end'>
+                                        <button 
+                                            className='bg-red-500 text-white font-semibold m-2 rounded-xl'
+                                            onClick={() => setEProducts(eProducts.filter((_:any, i:any) => i !== index))}
+                                        >
+                                            <MdDeleteForever size={20}/>
+                                        </button>
+                                    </div>
                                     </div>
                                     <div>
                                         <label>Description</label>

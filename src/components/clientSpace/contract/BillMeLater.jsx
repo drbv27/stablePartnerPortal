@@ -12,6 +12,11 @@ const notify = () => toast.success('Thank you contract sent successfully',{
   position: 'top-right',
 });
 
+const notify2 = () => toast.success('Signature saved',{
+  duration: 4000,
+  position: 'top-right',
+});
+
 const BillMeLater = ({id,company}) => {
     const [signature, setSignature] = useState(null);
     const [signatureData, setSignatureData] = useState(null);
@@ -22,8 +27,9 @@ const BillMeLater = ({id,company}) => {
     const saveSignature = () => {
       const quality = 0.5;
       const pngDataUri = signature.toDataURL('image/png', quality);
-      console.log(pngDataUri);
+      //console.log(pngDataUri);
       setSignatureData(pngDataUri);
+      notify2();
       
     };
   
@@ -34,9 +40,6 @@ const BillMeLater = ({id,company}) => {
 
     const handleAccept = async () => {
       const updatedQuote = await updateStatus(id,'signed');
-/*       router.push(`/clientSpace/accept/${id}`);
-      console.log(updatedQuote)
-      updateQuoteStatus('signed'); */
     };
 
     const handleSendMail = async ({to,subject,htmlContent}) => {
@@ -57,11 +60,16 @@ const BillMeLater = ({id,company}) => {
 
     
     const onSubmit = async (data) => {
+      if (!signature) {
+        toast.error('Please sign before submitting.');
+        return;
+      }
       //console.log(data)
       const response = await fetch('https://api.ipify.org?format=json');
       const ipData = await response.json();
       const ipAddress = ipData.ip;
       data.ipAddress = ipAddress;
+      data.signature = signatureData;
       const fullname = isChecked ? data.fullname : company.companyName;
       const businessAddress = isChecked ? data.businessAddress : `${company.address}, ${company.city}, ${company.state}, ${company.zip}`;
       const dataToSend = {
@@ -71,8 +79,8 @@ const BillMeLater = ({id,company}) => {
           /* ipAddress: data.ipAddress */
         },
         sendEmail: false,
-        contractStatus: 'pending',
-        signatureClient:'',
+        contractStatus: 'signed',
+        signatureClient:data.signature,
         signatureManager: '',
         quote:id,
       }
@@ -157,7 +165,7 @@ const BillMeLater = ({id,company}) => {
 
       <input type="submit" value="SUBMIT" className='w-full bg-orange-400 text-white font-semibold text-lg py-1 px-2 rounded-md mt-4 cursor-pointer'/>
     </form>
-
+    <Toaster />
   </div>
   )
 }

@@ -54,7 +54,25 @@ const PaymentContract = ({contract}:any) => {
         )
     }
   return (
-    <div>PaymentContract</div>
+    <div className="p-1 px-8">
+        <div>
+            <h2 className="mt-4 text-2xl text-center">Payment</h2>
+            <div className="border border-slate-300 p-2 rounded-md shadow-xl">
+                <h2>Payment Method: Bank Transfer</h2>
+               {/*  <h2>Bank Name: <span className="font-semibold">{contract.bankTransfer.bankName}</span><span className="text-orange-600"><RiBankFill/></span></h2>
+                <h2>Account number: <span className="font-semibold">{contract.bankTransfer.accountNumber}</span></h2>
+                <h2>Routing number: <span className="font-semibold">{contract.bankTransfer.routingNumber}</span></h2>
+                <h2>IP Address: <span className="font-semibold">{contract.bankTransfer.ipAddress}</span></h2> */}
+                <h2>Sign date: <span className="font-semibold">{contract.signDate}</span></h2>
+                <div className="w-full md:w-1/3 border border-slate-300 mt-2 flex justify-center rounded-md">
+                    <img src={contract.signatureClient} alt="" />
+                </div>
+            </div>
+        </div>
+        <div>
+            <AproveContract contract={contract}/>
+        </div>
+    </div>
   )
 }
 
