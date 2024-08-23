@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, use } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { MdContactEmergency, MdContactMail, MdContactPhone, MdDomain,MdSkipNext } from "react-icons/md";
 import { FaCity, FaMapLocationDot } from "react-icons/fa6";
 import { FaMapPin } from "react-icons/fa";
@@ -40,7 +40,34 @@ export default function EditCompanyForm({quote}:any) {
     const { setPortNumbers } = usePortNumbers();
     const { setProducts } = useTotalProducts();
     const { setEntrieProducts } = useTotalEntrieProducts()
-    useEffect(() => {
+
+    //nuevo
+    const initializeForm = useCallback(() => {
+        addCompany(quote.company)
+        setTotalUsers(Number(quote.totalUsers))
+        setTotalFax(Number(quote.totalFax))
+        setTotalConference(Number(quote.totalConference))
+        setPortNumbers(quote.portNumbers);
+        setProducts(quote.totalProducts.map((product:any) => ({
+            id: product.product._id,
+            title: product.product.title,
+            description: product.product.description,
+            image: product.product.images[0],
+            inStock: product.product.inStock,
+            price: product.product.price,
+            sizes: product.product.sizes,
+            slug: product.product.slug,
+            tags: product.product.tags,
+            type: product.product.type,
+            category: product.product.category,
+            total: product.quantity,
+            recurrent: product.product.recurrent
+        })))
+        setEntrieProducts(quote.totalEntrieProducts)
+    }, [addCompany, setTotalUsers, setTotalFax, setTotalConference, setPortNumbers, setProducts, setEntrieProducts, quote])
+    //nuevo
+
+/*     useEffect(() => {
         addCompany(quote.company)
         setTotalUsers(Number(quote.totalUsers))
         setTotalFax(Number(quote.totalFax))
@@ -65,8 +92,16 @@ export default function EditCompanyForm({quote}:any) {
             })
         )
         setEntrieProducts(quote.totalEntrieProducts)
-        /* addUser(quote.totalUsers) */
-    },[])
+    },[]) */
+
+
+    //nuevo
+    useEffect(() => {
+        initializeForm()
+    }, [initializeForm])
+    //nuevo
+
+
     const {
         register,
         handleSubmit,

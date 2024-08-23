@@ -6,6 +6,7 @@ const MonthlyContract = ({quote}:any) => {
     const totalUsers = quote.totalUsers;
     const totalFax = quote.totalFax;
     const totalConference = quote.totalConference;
+    const portNumbers = quote.portNumbers;
     
     let monthlyTotal = 0;
     let oneTimeTotal = 0;
@@ -26,13 +27,20 @@ const MonthlyContract = ({quote}:any) => {
         monthlyEntries = totalEntrieProducts.reduce((acc:number, product:any) => product.recurrent ? acc + product.quantity * product.price : acc, 0)
         oneTimeEntries = totalEntrieProducts.reduce((acc:number, product:any) => !product.recurrent ? acc + product.quantity * product.price : acc, 0)
     }
+
+    if (portNumbers.length > 2) {
+        monthlyTotal += monthlyEntries+Users.total*Users.price+Fax.total*Fax.price+Conference.total*Conference.price+((portNumbers.length - 2) * 2.00);
+    }else{
+        monthlyTotal += monthlyEntries+Users.total*Users.price+Fax.total*Fax.price+Conference.total*Conference.price;
+    }
     
-    monthlyTotal += monthlyEntries+Users.total*Users.price+Fax.total*Fax.price+Conference.total*Conference.price;
+    //monthlyTotal += monthlyEntries+Users.total*Users.price+Fax.total*Fax.price+Conference.total*Conference.price;
     oneTimeTotal += oneTimeEntries;
     monthlyTotal = parseFloat(monthlyTotal.toFixed(2));
     oneTimeTotal = parseFloat(oneTimeTotal.toFixed(2));
     //console.log(monthlyEntries)
     //console.log(totalEntrieProducts)
+    //console.log(portNumbers)
   return (
     <div className='px-1 md:px-6 pt-6'>
         <table className="w-full border border-gray-500">
@@ -138,11 +146,27 @@ const MonthlyContract = ({quote}:any) => {
                     </td>
                 </tr>
             }
+            { portNumbers.length !== 0 &&
+                <tr>
+                    <td colSpan={3} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-sm md:text-base">
+                        Port Numbers {portNumbers.map((port:string, index:number) => <span key={index} className="font-normal"> | {port}</span>)}
+                    </td>
+                    <td colSpan={1} className="md:font-semibold px-1 md:px-2 py-1 border border-gray-300 leading-5 text-center text-sm md:text-base">
+                        {portNumbers.length-2>0 ? portNumbers.length-2 : 0}
+                    </td>
+                    <td colSpan={1} className="md:font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right text-sm md:text-base">
+                        $ 2.00
+                    </td>
+                    <td colSpan={1} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right text-sm md:text-base">
+                        $ {portNumbers.length-2>0 ? ((portNumbers.length-2)*2).toFixed(2) : 0}
+                    </td>
+                </tr>
+            }
             <tr>
                 <td colSpan={5} className="px-1 md:px-6 py-1 border border-gray-300 bg-orange-200 leading-5">
                     <span className='font-semibold'>Total Monthly Charges</span> 
                 </td>
-                <td colSpan={1} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 bg-orange-200 leading-5">
+                <td colSpan={1} className="font-semibold text-right px-1 md:px-6 py-1 border border-gray-300 bg-orange-200 leading-5">
                     ${monthlyTotal}
                 </td>
             </tr>

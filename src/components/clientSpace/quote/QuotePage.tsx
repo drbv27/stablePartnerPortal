@@ -60,7 +60,7 @@ const QuotePage = ({data,id}:any) => {
             });
             const updateQuoteR = await updateQuote(
                 id,
-                {   pdf:`https://api.nevtis.com/marketplace/files${response.data.key}`, 
+                {   pdf:`https://api.nevtis.com/marketplace/files/list/${response.data.key}`, 
                     status:'accept'
                 });
             router.push(`/client/accept/${id}`);
@@ -83,7 +83,7 @@ const QuotePage = ({data,id}:any) => {
             });
             const updateQuoteR = await updateQuote(
                 id,
-                {   pdf:`https://api.nevtis.com/marketplace/files/${response.data.key}`, 
+                {   pdf:`https://api.nevtis.com/marketplace/files/list/${response.data.key}`, 
                     status:'accept'
                 });
             router.push(`/client/accept/${id}`);

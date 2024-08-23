@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link"
-import { FaEye,FaTrash,FaSpinner } from "react-icons/fa6"
+import { FaEye,FaTrash,FaSpinner, FaRegFilePdf } from "react-icons/fa6"
 import { deleteQuote } from "@/actions/quotes/quotes-actions"
 import { useRouter } from "next/navigation"
 import { useSession, signOut } from "next-auth/react";
@@ -41,9 +41,15 @@ const QuotesTable = (quotes:any) => {
                     <div>{quote.quoteNo}</div>
                     {/* <div>{quote.quoteNo}</div> */}
                     <div className="w-[15%] text-right py-1 flex justify-end">
+                    {quote.pdf && quote.pdf !== "pdf" &&
+                        <Link href={`${quote.pdf}`} className="text-xl text-red-400 hover:text-red-600 mr-1">
+                            <FaRegFilePdf />
+                        </Link>
+                    }
                     <Link href={`/dashboard/editQuote/company/${quote._id}`} className="text-xl text-orange-400 hover:text-orange-500 mr-1">
                         <FaEye />
                     </Link>
+
                     {/* <button onClick={()=>handleDelete(quote._id)} className="text-red-500 text-xl mr-1"><FaTrash /></button> */}
                     </div>
                 </div>

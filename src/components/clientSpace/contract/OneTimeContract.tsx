@@ -154,7 +154,7 @@ const OneTimeContract
                 <td colSpan={8} className="px-1 md:px-6 py-1 border border-gray-300 bg-gray-200 leading-5">
                     <span className='font-semibold'>Total One Time Charges</span><span className='text-xs'> </span> 
                 </td>
-                <td colSpan={2} className="font-semibold px-1 md:px-10 py-1 border border-gray-300 bg-gray-200 leading-5">
+                <td colSpan={2} className="font-semibold text-right px-1 md:px-6 py-1 border border-gray-300 bg-gray-200 leading-5">
                     ${promocode !== null ? 
                       (oneTimeTotal - oneTimeTotal * promocode.discount + oneTimeTax).toFixed(2) : 
                       (oneTimeTotal + oneTimeTax).toFixed(2)}

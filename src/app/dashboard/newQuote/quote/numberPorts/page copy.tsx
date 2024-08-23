@@ -6,7 +6,6 @@ import { FaFax, FaUsersLine, FaCircleMinus, FaCirclePlus } from "react-icons/fa6
 import { MdSkipNext } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { usePortNumbers } from "@/store/PortNumbersStore";
-import CreatePortNumbers from "@/components/quotes/CreatePortNumbers";
 
 
 interface State {
@@ -71,8 +70,7 @@ export default function NumberPortsPage() {
 console.log(portValues)
 console.log(portNumbers)
   return (
-    <CreatePortNumbers />
-/*     <div>
+    <div>
       <div className="px-2 md:px-6">
         <h2 className="text-xl text-center md:text-2xl text-orange-900">Tell us how many Phone number you want.</h2>
         <p className="text-justify mb-2">Choose the quantity and after please give us the numbers. Remeber the first two are for free, after is U$ 2 /each </p>
@@ -96,6 +94,6 @@ console.log(portNumbers)
           <span className="text-lg text-gray-200">Next </span> <MdSkipNext className="text-gray-200" size={28}/>
         </button>
       </div>
-    </div> */
+    </div>
   );
 }

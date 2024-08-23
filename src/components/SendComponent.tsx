@@ -47,7 +47,7 @@ const SendComponent = () => {
 
     //console.log(sellerUser)
     //console.log(session)
-    console.log(totalEntrieProducts)
+    //console.log(totalEntrieProducts)
   
     const dataToSend = {
         user: session?.user?._id,

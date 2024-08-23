@@ -18,14 +18,14 @@ const ApprovedsTable = (quotes:any) => {
     //console.log(quotes.quotes)
   return (
     <div className="p-2 bg-slate-200 w-[80vw] ml-1 shadow-xl rounded-md h-[75vh]">
-        <div className="w-full bg-orange-700 flex justify-between px-4 font-semibold text-white mt-1">
+        <div className="w-full bg-orange-700 flex justify-between px-4 font-semibold text-white mt-1 rounded-t-md">
             <div className="w-[70%]">Company</div>
             <div className="w-[20%] text-center">Status</div>
             <div className="w-[10%]">Actions</div>
         </div>
         <div className=" bg-white overflow-y-auto">
             {quotes.quotes.filter((quote: any) => quote.status === "signed").map((quote:any) => (
-                <div key={quote._id} className="flex justify-between border-b-2 border-orange-400 px-4">
+                <div key={quote._id} className="flex justify-between border-b-2 border-orange-300 px-4">
                     <div className="w-[70%] py-1">{quote.company?.companyName}</div>
                     <div className="w-[20%] text-center py-1 font-semibold">{quote.status}</div>
                     <div className="w-[10%] text-right py-1 flex justify-end">
@@ -35,7 +35,7 @@ const ApprovedsTable = (quotes:any) => {
                         {/* <button onClick={()=>handleDelete(quote._id)} className="text-red-500 text-xl mr-1"><FaTrash /></button> */}
                     </div>
                 </div>
-            ))}
+            )).reverse()}
         </div>
     </div>
   )

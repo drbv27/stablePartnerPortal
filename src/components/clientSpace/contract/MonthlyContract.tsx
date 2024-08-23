@@ -18,7 +18,7 @@ interface Entrie {
   }
 
 const MonthlyContract = ({data}:any) => {
-    const { totalProducts, totalEntrieProducts, totalUsers, totalFax, totalConference } = data;
+    const { totalProducts, totalEntrieProducts, totalUsers, totalFax, totalConference, portNumbers } = data;
     let monthlyTotal = 0;
     let oneTimeTotal = 0;
     let monthlyEntries = 0;
@@ -39,11 +39,18 @@ const MonthlyContract = ({data}:any) => {
         monthlyEntries = totalEntrieProducts.reduce((acc:number, product:Entrie) => product.recurrent ? acc + Number(product.quantity) * Number(product.price) : acc, 0)
         oneTimeEntries = totalEntrieProducts.reduce((acc:number, product:Entrie) => !product.recurrent ? acc + Number(product.quantity) * Number(product.price) : acc, 0)
     }
+
+    if (portNumbers.length > 2) {
+        monthlyTotal += monthlyEntries+Users.total*Users.price+Fax.total*Fax.price+Conference.total*Conference.price+((portNumbers.length - 2) * 2.00);
+    }else{
+        monthlyTotal += monthlyEntries+Users.total*Users.price+Fax.total*Fax.price+Conference.total*Conference.price;
+    }
     
-    monthlyTotal += monthlyEntries+Users.total*Users.price+Fax.total*Fax.price+Conference.total*Conference.price;
+    //monthlyTotal += monthlyEntries+Users.total*Users.price+Fax.total*Fax.price+Conference.total*Conference.price;
     oneTimeTotal += oneTimeEntries;
     monthlyTotal = parseFloat(monthlyTotal.toFixed(2));
     oneTimeTotal = parseFloat(oneTimeTotal.toFixed(2));
+    //console.log(data)
   return (
     <div className="w-full border border-gray-300 mt-4 p-1 md:p-4 rounded-md overflow-x-auto">
 
@@ -152,6 +159,22 @@ const MonthlyContract = ({data}:any) => {
                     </td>
                     <td colSpan={1} className="font-normal md:font-semibold  px-1 md:px-6 py-1 whitespace-no-wrap border border-gray-300 leading-5 text-right">
                         $ {(Conference.total * Conference.price).toFixed(2)}
+                    </td>
+                </tr>
+            }
+            { portNumbers.length !== 0 &&
+                <tr>
+                    <td colSpan={3} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-sm md:text-base">
+                        Port Numbers {portNumbers.map((port:string, index:number) => <span key={index} className="font-normal"> | {port}</span>)}
+                    </td>
+                    <td colSpan={1} className="md:font-semibold px-1 md:px-2 py-1 border border-gray-300 leading-5 text-center text-sm md:text-base">
+                        {portNumbers.length-2>0 ? portNumbers.length-2 : 0}
+                    </td>
+                    <td colSpan={1} className="md:font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right text-sm md:text-base">
+                        $ 2.00
+                    </td>
+                    <td colSpan={1} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right text-sm md:text-base">
+                        $ {portNumbers.length-2>0 ? ((portNumbers.length-2)*2).toFixed(2) : 0}
                     </td>
                 </tr>
             }

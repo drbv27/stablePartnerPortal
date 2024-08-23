@@ -42,8 +42,8 @@ const OneTimeCharges = () => {
     monthlyTotal = parseFloat(monthlyTotal.toFixed(2));
     oneTimeTotal = parseFloat(oneTimeTotal.toFixed(2));
 
-    console.log("totalproducts",totalProducts)
-    console.log(totalEntrieProducts)
+    //console.log("totalproducts",totalProducts)
+    //console.log(totalEntrieProducts)
   return (
     <div className='px-1 md:px-6 pt-6'>
         <table className="w-full border border-gray-500">
