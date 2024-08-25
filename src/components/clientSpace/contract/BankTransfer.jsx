@@ -63,6 +63,10 @@ const BankTransfer = ({id,company}) => {
     };
     
     const onSubmit = async (data) => {
+      if (!signatureData) {
+        toast.error('Please sign or "save your sign" before submitting.');
+        return;
+      }
       const response = await fetch('https://api.ipify.org?format=json');
       const ipData = await response.json();
       const ipAddress = ipData.ip;
@@ -73,10 +77,10 @@ const BankTransfer = ({id,company}) => {
           bankName: data.bankName,
           accountNumber: data.accountNumber,
           routingNumber: data.routingNumber,
-          ipAdress:data.ipAddress
+          ipAddress:data.ipAddress
         },
         sendEmail: false,
-        contractStatus: 'pending',
+        contractStatus: 'signed',
         signatureClient: data.signature,
         signatureManager: '',
         quote:id,
@@ -108,19 +112,19 @@ const BankTransfer = ({id,company}) => {
       <div className='py-1'>
         <label htmlFor="bankName">Bank Name</label>
         <input {...register('bankName',{ required:true,minLength:7 })} type="text" placeholder='The name of your bank' className='border border-gray-300 p-1 w-full'/>
-        {errors.cardName && <span className='text-red-500 text-xs'>This field is required</span>}
+        {errors.bankName && <span className='text-red-500 text-xs'>This field is required</span>}
       </div>
 
       <div className='py-1'>
         <label htmlFor="accountNumber">Account Number</label>
-        <input {...register('accountNumber',{ required:true,minLength:16 })} type="text" placeholder='Your account number' className='border border-gray-300 p-1 w-full'/>
-        {errors.cardNumber && <span className='text-red-500 text-xs'>This field is required</span>}
+        <input {...register('accountNumber',{ required:true,minLength:8 })} type="text" placeholder='Your account number' className='border border-gray-300 p-1 w-full'/>
+        {errors.accountNumber && <span className='text-red-500 text-xs'>This field is required</span>}
       </div>
 
       <div className='py-1'>
         <label htmlFor="routingNumber">Routing Number</label>
-        <input {...register('routingNumber',{ required:true,minLength:16 })} type="text" placeholder='Routing number' className='border border-gray-300 p-1 w-full'/>
-        {errors.cardNumber && <span className='text-red-500 text-xs'>This field is required</span>}
+        <input {...register('routingNumber',{ required:true,minLength:9 })} type="text" placeholder='Routing number' className='border border-gray-300 p-1 w-full'/>
+        {errors.routingNumber && <span className='text-red-500 text-xs'>This field is required</span>}
       </div>
 
       <div>
@@ -161,6 +165,7 @@ const BankTransfer = ({id,company}) => {
 
       <input type="submit" value="SUBMIT" className='w-full bg-orange-400 text-white font-semibold text-lg py-1 px-2 rounded-md mt-4 cursor-pointer'/>
     </form>
+    <Toaster />
   </div>
   )
 }

@@ -94,7 +94,7 @@ const MonthlyValues
                     <td colSpan={1} className="md:font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right">
                         <span>$</span><span className="md:ms-1">{Users.price.toFixed(2)}</span>
                     </td>
-                    <td colSpan={1} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right flex">
+                    <td colSpan={1} className="font-semibold px-1 md:px-6 py-1 border-gray-300 leading-5 text-right flex">
                         <span>$</span><span className="md:ms-1">{(Users.total * Users.price).toFixed(2)}</span>
                     </td>
                 </tr>
@@ -184,11 +184,10 @@ const MonthlyValues
                 <td colSpan={5} className="px-1 md:px-6 py-1 border border-gray-300 bg-orange-200 leading-5">
                     <span className='font-semibold'>Total Monthly Charges</span><span className='text-xs'> (Prices do not include taxes or local government fees. Taxes and fees are calculated based on location of first billing statement)</span> 
                 </td>
-                <td colSpan={1} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 bg-orange-200 leading-5">
+                <td colSpan={1} className="font-semibold text-right px-1 md:px-6 py-1 border border-gray-300 bg-orange-200 leading-5">
                     ${monthlyTotal}
                 </td>
             </tr>
-           
             </tbody>
         </table>
     </div>

@@ -11,6 +11,7 @@ export async function getQuotes(){
         revalidatePath('/dashboard/manageQuote');
         revalidatePath('/dashboard/main');
         revalidatePath('/dashboard/aproveQuote')
+        revalidatePath('/dashboard/downloadContracts')
         return {quotes};
     } catch (error) {
         return {errorMsg:(error as Error).message};

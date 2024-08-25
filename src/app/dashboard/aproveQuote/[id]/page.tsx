@@ -16,17 +16,19 @@ interface Props {
 export default async function approvedQuotePage({params}: Props){
     const {quote} = await getQuote(params.id);
     const contract = await getContract(params.id);
+
+    if(!quote || !contract){
+        return <div>Loading...</div>
+    }
     
 
     return (
+      
         <div className="h-[99vh] overflow-y-auto">
           <CompanyContract company={quote.company} />
           <MonthlyContract quote={quote}/>
           <OneTimeCompany quote={quote}/>
           <PaymentContract contract={contract}/>
-          
-
-
         </div>
       );
 }

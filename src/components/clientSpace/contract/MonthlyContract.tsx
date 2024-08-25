@@ -93,7 +93,7 @@ const MonthlyContract = ({data}:any) => {
                     <td colSpan={1} className="font-normal md:font-semibold text-sm  px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right">
                         <span>$</span> <span>{product.product.price.toFixed(2)}</span>
                     </td>
-                    <td colSpan={1} className="font-normal md:font-semibold  px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right">
+                    <td colSpan={1} className="font-normal md:font-semibold text-sm px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right">
                         $ {(product.quantity * product.product.price).toFixed(2)}
                     </td>
                 </tr>
@@ -109,7 +109,7 @@ const MonthlyContract = ({data}:any) => {
                     <td colSpan={1} className="font-normal md:font-semibold text-sm  px-1 md:px-6 py-1 whitespace-no-wrap border border-gray-300 leading-5 text-right">
                         $ {Number(product.price).toFixed(2)}
                     </td>
-                    <td colSpan={1} className="font-normal md:font-semibold  px-1 md:px-6 py-1 whitespace-no-wrap border border-gray-300 leading-5 text-right">
+                    <td colSpan={1} className="font-normal md:font-semibold text-sm px-1 md:px-6 py-1 whitespace-no-wrap border border-gray-300 leading-5 text-right">
                         $ {Number(product.quantity * product.price).toFixed(2)}
                     </td>
                 </tr>
@@ -125,7 +125,7 @@ const MonthlyContract = ({data}:any) => {
                     <td colSpan={1} className="font-normal md:font-semibold text-sm  px-1 md:px-6 py-1 whitespace-no-wrap border border-gray-300 leading-5 text-right">
                         $ {Users.price.toFixed(2)}
                     </td>
-                    <td colSpan={1} className="font-normal md:font-semibold  px-1 md:px-6 py-1 whitespace-no-wrap border border-gray-300 leading-5 text-right">
+                    <td colSpan={1} className="font-normal md:font-semibold text-sm px-1 md:px-6 py-1 whitespace-no-wrap border border-gray-300 leading-5 text-right">
                         $ {(Users.total * Users.price).toFixed(2)}
                     </td>
                 </tr>
@@ -141,7 +141,7 @@ const MonthlyContract = ({data}:any) => {
                     <td colSpan={1} className="font-normal md:font-semibold text-sm  px-1 md:px-6 py-1 whitespace-no-wrap border border-gray-300 leading-5 text-right">
                         $ {Fax.price.toFixed(2)}
                     </td>
-                    <td colSpan={1} className="font-normal md:font-semibold  px-1 md:px-6 py-1 whitespace-no-wrap border border-gray-300 leading-5 text-right">
+                    <td colSpan={1} className="font-normal md:font-semibold text-sm px-1 md:px-6 py-1 whitespace-no-wrap border border-gray-300 leading-5 text-right">
                         $ {(Fax.total * Fax.price).toFixed(2)}
                     </td>
                 </tr>
@@ -157,7 +157,7 @@ const MonthlyContract = ({data}:any) => {
                     <td colSpan={1} className="font-normal md:font-semibold text-sm  px-1 md:px-6 py-1 whitespace-no-wrap border border-gray-300 leading-5 text-right">
                         $ {Conference.price.toFixed(2)}
                     </td>
-                    <td colSpan={1} className="font-normal md:font-semibold  px-1 md:px-6 py-1 whitespace-no-wrap border border-gray-300 leading-5 text-right">
+                    <td colSpan={1} className="font-normal md:font-semibold text-sm px-1 md:px-6 py-1 whitespace-no-wrap border border-gray-300 leading-5 text-right">
                         $ {(Conference.total * Conference.price).toFixed(2)}
                     </td>
                 </tr>

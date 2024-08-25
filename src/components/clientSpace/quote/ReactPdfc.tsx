@@ -250,11 +250,13 @@ const ReactPdfc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalFa
               <Text style={{ width: '15%', textAlign:'right' }}>${product.taxes ? (Number(product.quantity) * Number(product.price) * TAX_RATE).toFixed(2) : '0.00'}</Text>
             </View>
           ))}
-          <View style={{ flexDirection: 'row', borderBottom: '1pt solid gray', marginBottom: 5, paddingBottom: 5, fontSize:'12px', paddingHorizontal: 5 }}>
-            <Text style={{ width: '55%' }}>Sales Taxes</Text>
-            <Text style={{ width: '15%', textAlign:'right' }}>{(TAX_RATE * 100).toFixed(2)}%</Text>
-            <Text style={{ width: '30%', textAlign:'right' }}>${oneTimeTax.toFixed(2)}</Text>
-          </View>
+          { oneTimeTax > 0 &&
+            <View style={{ flexDirection: 'row', borderBottom: '1pt solid gray', marginBottom: 5, paddingBottom: 5, fontSize:'12px', paddingHorizontal: 5 }}>
+              <Text style={{ width: '55%' }}>Sales Taxes</Text>
+              <Text style={{ width: '15%', textAlign:'right' }}>{(TAX_RATE * 100).toFixed(2)}%</Text>
+              <Text style={{ width: '30%', textAlign:'right' }}>${oneTimeTax.toFixed(2)}</Text>
+            </View>
+          }
           <View 
             style={{ 
               flexDirection: 'row', 

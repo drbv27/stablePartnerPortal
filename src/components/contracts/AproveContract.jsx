@@ -44,6 +44,10 @@ const AproveContract = ({contract}) => {
       console.log(updatedContract)
     };
 
+    const handleApprove = async () => {
+      const updatedQuote = await updateStatus(contract.quote._id,'approved');
+    };
+
     const handleSendMail = async ({to,subject,htmlContent}) => {
       const res = await fetch('https://api.nevtis.com/comunication/email/partner-portal', {
         method: 'POST',
@@ -60,10 +64,11 @@ const AproveContract = ({contract}) => {
     };
     
     const onSubmit = async (data) => {
-      if (!signature) {
-        toast.error('Please sign before submitting.');
+      if (!signatureData) {
+        toast.error('Please sign or "save your sign" before submitting.');
         return;
       }
+      //console.log(signature)
       const response = await fetch('https://api.ipify.org?format=json');
       const ipData = await response.json();
       const ipAddress = ipData.ip;
@@ -75,6 +80,7 @@ const AproveContract = ({contract}) => {
         signatureManager: data.signature,
       }
       console.log(dataToSend);
+      handleApprove();
       handleSign(contract._id, dataToSend);
       const dynamicLink = `https://partnerportal.nevtis.com/client/signed/${contract.quote._id}`;
 

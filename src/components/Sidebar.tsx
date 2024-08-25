@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { IoBrowsersOutline, IoCalculator, IoLogoReact } from 'react-icons/io5'
-import { FaFileCirclePlus, FaFileInvoice, FaFileCircleCheck, FaUserPlus,FaFileSignature, FaTags, FaUserGear, FaRegCircleUser } from 'react-icons/fa6'
+import { FaFileCirclePlus, FaFileInvoice, FaFileCircleCheck, FaUserPlus,FaFileSignature, FaTags, FaUserGear, FaRegCircleUser, FaFilePdf } from 'react-icons/fa6'
 import { LiaUserTagSolid } from 'react-icons/lia'
 import SidebarMenuItem from './SidebarMenuItem'
 import { LogoutButton } from './LogoutButton'
@@ -31,35 +31,35 @@ const Sidebar = ({ userType }: SidebarProps) => {
   const menuItems = [
     {
       path: '/dashboard/main',
-      icon: <IoBrowsersOutline size={30} />,
+      icon: <IoBrowsersOutline size={25} />,
       icon2: <IoBrowsersOutline size={20} />,
       title: 'Dashboard',
       subtitle: ''
     },
     {
       path: '/dashboard/newQuote/company',
-      icon: <FaFileCirclePlus size={30} />,
+      icon: <FaFileCirclePlus size={25} />,
       icon2: <FaFileCirclePlus size={20} />,
       title: 'New Quote',
       subtitle: ''
     },
     {
       path: '/dashboard/manageQuote',
-      icon: <FaFileInvoice size={30} />,
+      icon: <FaFileInvoice size={25} />,
       icon2: <FaFileInvoice size={20} />,
       title: 'Manage Quote',
       subtitle: ''
     },
     {
       path: '/dashboard/newLead',
-      icon: <LiaUserTagSolid size={30} />,
+      icon: <LiaUserTagSolid size={25} />,
       icon2: <LiaUserTagSolid size={20} />,
       title: 'New Lead',
       subtitle: ''
     },
     {
       path: '/dashboard/leadList',
-      icon: <FaTags size={30} />,
+      icon: <FaTags size={25} />,
       icon2: <FaTags size={20} />,
       title: 'Leads List',
       subtitle: ''
@@ -82,15 +82,22 @@ const Sidebar = ({ userType }: SidebarProps) => {
       }, */
       {
         path: '/dashboard/aproveQuote',
-        icon: <FaFileSignature size={30} />,
+        icon: <FaFileSignature size={25} />,
         icon2: <FaFileSignature size={20} />,
         title: 'Approve Contract',
+        subtitle: ''
+      },
+      {
+        path: '/dashboard/downloadContracts',
+        icon: <FaFilePdf size={25} />,
+        icon2: <FaFilePdf size={20} />,
+        title: 'Check Contract',
         subtitle: ''
       },
     ] : []),
     {
       path: '/dashboard/settings',
-      icon: <FaUserGear size={30} />,
+      icon: <FaUserGear size={25} />,
       icon2: <FaUserGear size={20} />,
       title: 'Settings',
     },
@@ -119,7 +126,7 @@ const Sidebar = ({ userType }: SidebarProps) => {
             </div>
             <div id="profile" className="px-6 py-1 md:py-4">
               <p className="text-xs md:text-base text-slate-500md:block hidden">Welcome <span className='invisible md:visible'>back</span></p>
-              <a href="#" className="flex flex-col md:flex-row space-x-2 items-center">
+              <a href="#" className="flex flex-col space-x-2 items-center">
                 <span>
 {/*                   <Image 
                     className="md:visible invisible rounded-full w-6 h-6 md:w-8 md:h-8" 

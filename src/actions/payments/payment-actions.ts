@@ -17,6 +17,19 @@ export async function getContract(id:string){
     }
 }
 
+//get all quotes
+export async function getContracts(){
+    try {
+        const contracts = await fetch('https://api.nevtis.com/marketplace/payment/all').then(res => res.json()).then(data => data);
+        //console.log(quotes)
+        revalidatePath('/dashboard/main');
+        revalidatePath('/dashboard/manageQuote');
+        return {contracts};
+    } catch (error) {
+        return {errorMsg:(error as Error).message};
+    }
+}
+
 //update a contract
 export async function updateContract(id:string,quote:any){
     try {

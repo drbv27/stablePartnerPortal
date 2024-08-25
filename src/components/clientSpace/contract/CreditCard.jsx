@@ -62,8 +62,8 @@ const CreditCard = ({id,company}) => {
     };
     
     const onSubmit = async (data) => {
-      if (!signature) {
-        toast.error('Please sign before submitting.');
+      if (!signatureData) {
+        toast.error('Please sign or "save your sign" before submitting.');
         return;
       }
       const response = await fetch('https://api.ipify.org?format=json');

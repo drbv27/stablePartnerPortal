@@ -138,18 +138,19 @@ const OneTimeContract
                         </td>
                     </tr>
                 )}
-
-            <tr>
-                <td colSpan={6} className="px-1 md:px-6 py-1 border border-gray-300 leading-5">
-                    <span className='font-semibold text-gray-600'>Sales Taxes</span><span className='text-xs'> </span> 
-                </td>
-                <td colSpan={2} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right">
-                    {(TAX_RATE * 100).toFixed(2)}%
-                </td>
-                <td colSpan={2} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right">
-                    ${oneTimeTax.toFixed(2)}
-                </td>
-            </tr>
+            { oneTimeTax > 0 &&
+                <tr>
+                    <td colSpan={6} className="px-1 md:px-6 py-1 border border-gray-300 leading-5">
+                        <span className='font-semibold text-gray-600'>Sales Taxes</span><span className='text-xs'> </span> 
+                    </td>
+                    <td colSpan={2} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right">
+                        {(TAX_RATE * 100).toFixed(2)}%
+                    </td>
+                    <td colSpan={2} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right">
+                        ${oneTimeTax.toFixed(2)}
+                    </td>
+                </tr>
+            }
             <tr>
                 <td colSpan={8} className="px-1 md:px-6 py-1 border border-gray-300 bg-gray-200 leading-5">
                     <span className='font-semibold'>Total One Time Charges</span><span className='text-xs'> </span> 

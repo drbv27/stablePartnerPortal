@@ -23,6 +23,7 @@ const PaymentInfo = ({id,company}:any) => {
           </div>
         </div>
       </div>
+        <h3 className='text-xs text-center text-red-500 font-semibold'>Please choose a way to be billed 🔻</h3>
       <Tabs>
         <TabList>
           <Tab>

@@ -111,32 +111,19 @@ const OneTimeCompany = ({quote}:any) => {
                     </td>
                 </tr>
             ))}
-
-{/*             {promocode !== null && (
+            { oneTimeTax > 0 &&
                 <tr>
-                    <td colSpan={5} className="px-1 md:px-6 py-1 border border-gray-300 leading-5">
-                        <span className='font-semibold text-orange-900'>Discount</span><span className='text-xs'> </span> 
+                    <td colSpan={6} className="px-1 md:px-6 py-1 border border-gray-300 leading-5">
+                        <span className='font-semibold text-orange-900'>Sales Taxes</span><span className='text-xs'> </span> 
                     </td>
                     <td colSpan={2} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right">
-                        {(promocode.discount*100).toFixed(2)}%
+                        {(TAX_RATE * 100).toFixed(2)}%
                     </td>
                     <td colSpan={2} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right">
-                        ${(oneTimeTotal * promocode.discount).toFixed(2)}
+                        ${oneTimeTax.toFixed(2)}
                     </td>
                 </tr>
-            )} */}
-
-            <tr>
-                <td colSpan={6} className="px-1 md:px-6 py-1 border border-gray-300 leading-5">
-                    <span className='font-semibold text-orange-900'>Sales Taxes</span><span className='text-xs'> </span> 
-                </td>
-                <td colSpan={2} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right">
-                    {(TAX_RATE * 100).toFixed(2)}%
-                </td>
-                <td colSpan={2} className="font-semibold px-1 md:px-6 py-1 border border-gray-300 leading-5 text-right">
-                    ${oneTimeTax.toFixed(2)}
-                </td>
-            </tr>
+            }
             <tr>
                 <td colSpan={8} className="px-1 md:px-6 py-1 border border-gray-300 bg-orange-200 leading-5">
                     <span className='font-semibold'>Total One Time Charges</span><span className='text-xs'> </span> 

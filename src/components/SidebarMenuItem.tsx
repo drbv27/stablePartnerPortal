@@ -31,8 +31,8 @@ const SidebarMenuItem = ({ path, icon, icon2, title, subtitle }:Props) => {
       </div>
     </div>
     <div className="flex flex-col">
-      <span className="text-md font-bold leading-5 text-white hidden md:block">{title}</span>
-      <span className="text-sm text-white/50 hidden md:block">{subtitle}</span>
+      <span className="text-sm font-semibold leading-5 text-white hidden md:block">{title}</span>
+      <span className="text-xs text-white/50 hidden md:block">{subtitle}</span>
     </div>
   </Link>
   )
