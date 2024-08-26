@@ -1,25 +1,20 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import TopbarEdit from '../TopBarEdit'
 import { MdSkipNext, MdDeleteForever } from 'react-icons/md'
+import { IoMdCloseCircle } from 'react-icons/io'
 import { useTotalEntrieProducts } from '@/store/ManualEntries'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useRouter } from 'next/navigation'
 
 const EditEntries = ({quote, id}: any) => {
-    const { totalEntrieProducts, setEntrieProducts } = useTotalEntrieProducts()
+    const [eProducts, setEProducts] = useState(quote.quote.totalEntrieProducts)
+    const { setEntrieProducts } = useTotalEntrieProducts()
     const { register, handleSubmit, reset } = useForm()
     const router = useRouter()
-    const [isLoading, setIsLoading] = useState(true)
-
-    useEffect(() => {
-        if (totalEntrieProducts.length === 0 && quote && quote.quote && quote.quote.totalEntrieProducts) {
-            setEntrieProducts(quote.quote.totalEntrieProducts)
-        }
-        setIsLoading(false)
-    }, [quote, setEntrieProducts, totalEntrieProducts.length])
 
     const handleNext = () => {
+        setEntrieProducts(eProducts)
         router.push(`/dashboard/editQuote/cart/${id}`)
     }
 
@@ -32,15 +27,14 @@ const EditEntries = ({quote, id}: any) => {
             chargetype: data.chargetype,
             total: parseFloat(data.price) * parseInt(data.quantity),
             recurrent: data.chargetype === 'monthly',
-            quantity: parseInt(data.quantity),
-            taxes: false // You might want to add a checkbox for this in your form
+            quantity: parseInt(data.quantity)
         }
-        setEntrieProducts([...totalEntrieProducts, newProduct])
+        setEProducts([...eProducts, newProduct])
         reset()
     }
 
     const handleProductUpdate = (index: number, field: string, value: string | number) => {
-        const updatedProducts = [...totalEntrieProducts]
+        const updatedProducts = [...eProducts]
         updatedProducts[index] = { 
             ...updatedProducts[index], 
             [field]: field === 'price' || field === 'quantity' ? parseFloat(value as string) : value 
@@ -51,21 +45,17 @@ const EditEntries = ({quote, id}: any) => {
         if (field === 'chargetype') {
             updatedProducts[index].recurrent = value === 'monthly'
         }
-        setEntrieProducts(updatedProducts)
-    }
-
-    if (isLoading) {
-        return <div>Loading...</div>
+        setEProducts(updatedProducts)
     }
 
     return (
         <div className='h-[100vh] flex flex-col'>
             <TopbarEdit id={id}/>
             <div className='h-[90vh] flex flex-col md:flex-row'> 
-                {totalEntrieProducts.length > 0 ? (
+                {eProducts.length > 0 ? (
                     <div className='h-[40vh] md:h-[90vh] overflow-y-auto w-[80vw] md:w-1/2'>
                         <h2 className='text-2xl font-bold text-orange-900 text-center mt-1 mb-1'>Actual Entries</h2>
-                        {totalEntrieProducts.map((product: any, index: number) => (
+                        {eProducts.map((product: any, index: number) => (
                             <div key={product.id} className='border border-gray-300 shadow-md rounded-lg px-2 py-1 mt-1 ml-4 mr-4'>
                                 <div className='grow px-2'>
                                     <div className='flex md:flex-row justify-between gap-2'>
@@ -81,7 +71,7 @@ const EditEntries = ({quote, id}: any) => {
                                     <div className='flex justify-end'>
                                         <button 
                                             className='bg-red-500 text-white font-semibold m-2 rounded-xl'
-                                            onClick={() => setEntrieProducts(totalEntrieProducts.filter((_:any, i:any) => i !== index))}
+                                            onClick={() => setEProducts(eProducts.filter((_:any, i:any) => i !== index))}
                                         >
                                             <MdDeleteForever size={20}/>
                                         </button>
@@ -128,7 +118,23 @@ const EditEntries = ({quote, id}: any) => {
                                         </select>
                                         </div>
                                     </div>
+{/*                                     <div className='flex justify-end'>
+                                    <button 
+                                        className='bg-red-500 text-white font-semibold px-1 pt-0 m-2 rounded-md '
+                                        onClick={() => setEProducts(eProducts.filter((_:any, i:any) => i !== index))}
+                                    >
+                                        x
+                                    </button>
+                                </div> */}
                                 </div>
+{/*                                 <div className='flex justify-end'>
+                                    <button 
+                                        className='bg-red-500 text-white font-semibold px-1 pt-0 m-2 rounded-md '
+                                        onClick={() => setEProducts(eProducts.filter((_:any, i:any) => i !== index))}
+                                    >
+                                        x
+                                    </button>
+                                </div> */}
                             </div>
                         ))}
                     </div>

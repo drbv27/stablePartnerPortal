@@ -6,39 +6,44 @@ import { usePortNumbers } from "@/store/PortNumbersStore";
 import { FaPlusCircle } from 'react-icons/fa';
 import { FaCircleXmark } from 'react-icons/fa6';
 
+
 const EditPortNumbers = ({quote, id}: any) => {
     const [isLoading, setIsLoading] = useState(true);
-    const { portNumbers, addPortNumber, removePortNumber, setPortNumbers } = usePortNumbers();
+    const [portValues, setPortValues] = useState<string[]>([]);
+    const { setPortNumbers, portNumbers } = usePortNumbers();
     const [newPortNumber, setNewPortNumber] = useState<string>('');
 
     const router = useRouter();
 
     useEffect(() => {
-        // Solo inicializa con los datos de las props si el estado global está vacío
-        if (portNumbers.length === 0 && quote && quote.quote && quote.quote.portNumbers) {
+        if (quote && quote.quote && quote.quote.portNumbers) {
             setPortNumbers(quote.quote.portNumbers);
+            /* setPortValues(quote.quote.portNumbers); */
         }
         setIsLoading(false);
-    }, [quote, setPortNumbers, portNumbers.length]);
+    }, [quote]);
 
     const handleAddPort = () => {
         if (newPortNumber) {
-            addPortNumber(newPortNumber);
+            setPortValues(prevValues => [...prevValues, newPortNumber]);
             setNewPortNumber('');
         }
     };
 
-    const handleRemovePort = (port: string) => {
-        removePortNumber(port);
+    const handleRemovePort = (index: number) => {
+        setPortValues(prevValues => prevValues.filter((_, i) => i !== index));
     };
 
     const handlePortChange = (index: number, value: string) => {
-        const newPortNumbers = [...portNumbers];
-        newPortNumbers[index] = value;
-        setPortNumbers(newPortNumbers);
+        setPortValues(prevValues => {
+            const newValues = [...prevValues];
+            newValues[index] = value;
+            return newValues;
+        });
     };
 
     const handleNext = () => {
+        setPortNumbers(portValues);
         router.push(`/dashboard/editQuote/market/${id}`);
     };
 
@@ -68,13 +73,13 @@ const EditPortNumbers = ({quote, id}: any) => {
                         <FaPlusCircle />
                     </button>
                 </div>
-                {portNumbers.length === 0 ? (
+                {portValues.length === 0 ? (
                     <div className="text-center py-4 px-2 bg-gray-100 rounded-md mb-4">
                         <p className="text-lg font-semibold text-gray-600">No ports selected</p>
                         <p className="text-sm text-gray-500">Add your first port number using the form above</p>
                     </div>
                 ) : (
-                    portNumbers.map((port, index) => (
+                    portValues.map((port, index) => (
                         <div key={index} className="mb-2 border p-2 shadow-md bg-gray-100 rounded-md flex items-center">
                             <label>PORT {index + 1}:</label>
                             <input
@@ -85,7 +90,7 @@ const EditPortNumbers = ({quote, id}: any) => {
                             />
                             <button
                                 className='px-2 py-1 bg-red-500 text-white text-2xl rounded-md ms-2'
-                                onClick={() => handleRemovePort(port)}
+                                onClick={() => handleRemovePort(index)}
                             >
                                 <FaCircleXmark />
                             </button>
