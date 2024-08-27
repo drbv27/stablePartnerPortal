@@ -29,7 +29,7 @@ const ContractInfo = ({company,dataAll}:any) => {
     //console.log(dataAll)
   return (
     <div className="w-full border border-gray-300 mt-4 p-2 md:p-4 rounded-md">
-        <div className="w-full flex flex-col md:flex-row justify-between px-1 md:px-6 py-1">
+        <div className="w-full flex flex-col md:flex-row justify-between px-1 md:px-6 py-2">
             <div className="w-full md:w-[50%]">
                 <p className="font-light inline-block md:block">Account Manager: </p>
                 <p className="font-semibold inline-block pl-2 md:block md:pl-0">{seller.length !== 0 ? seller[0].name : "Matt Salas"}</p>
@@ -39,7 +39,7 @@ const ContractInfo = ({company,dataAll}:any) => {
                 <p className="font-semibold inline-block pl-2 md:block md:pl-0">AS 05</p>
             </div>
         </div>
-        <div className="w-full flex flex-col md:flex-row justify-between px-1 md:px-6 py-1">
+        <div className="w-full flex flex-col md:flex-row justify-between px-1 md:px-6 py-2">
             <div className="w-full md:w-[33%]">
                 <p className="font-light inline-block md:block">Customer Information</p>
                 <p className="font-semibold inline-block pl-2 md:block md:pl-0">{company.companyName}</p>
@@ -53,7 +53,7 @@ const ContractInfo = ({company,dataAll}:any) => {
                 <p className="font-semibold inline-block pl-2 md:block md:pl-0">{company.phone}</p>
             </div>
         </div>
-        <div className="w-full flex flex-col md:flex-row justify-between px-1 md:px-6 py-1">
+        <div className="w-full flex flex-col md:flex-row justify-between px-1 md:px-6 py-2">
             <div className="w-full md:w-[50%]">
                 <p className="font-light inline-block md:block">Authorized Contact</p>
                 <p className="font-semibold inline-block pl-2 md:block md:pl-0">{`${company.name} ${company.lastname}`}</p>
@@ -63,7 +63,7 @@ const ContractInfo = ({company,dataAll}:any) => {
                 <p className="font-semibold inline-block pl-2 md:block md:pl-0">{company.email}</p>
             </div>
         </div>
-        <div className="w-full flex flex-col md:flex-row justify-between px-1 md:px-6 py-1">
+        <div className="w-full flex flex-col md:flex-row justify-between px-1 md:px-6 py-2">
             <div className="w-full md:w-[80%]">
                 <p className="font-light inline-block md:block">Service Address <span className="text-xs md:text-sm block md:inline-block">(This address will be sued for E911 Services)</span></p>
                 <p className="font-semibold md:pl-0">{`${company.address} ${company.address2}, ${company.city}, ${company.state}, ${company.zip}`}</p>
@@ -73,14 +73,22 @@ const ContractInfo = ({company,dataAll}:any) => {
                 <p className="font-semibold inline-block pl-2 md:block md:pl-0">{company.siteAnalysis}</p>
             </div>
         </div>
-        <div className="w-full flex flex-col md:flex-row justify-between px-1 md:px-6 py-1">
-            <div className="w-full md:w-[50%]">
+        <div className="w-full flex flex-col md:flex-row justify-between px-1 md:px-6 py-2">
+            <div className="w-full md:w-[25%]">
                 <p className="font-light inline-block md:block">Location Type</p>
                 <p className="font-semibold inline-block pl-2 md:block md:pl-0">{company.locationType}</p>
             </div>
-            <div className="w-full md:w-[50%]">
+            <div className="w-full md:w-[25%]">
                 <p className="font-light inline-block md:block">Bandwith</p>
                 <p className="font-semibold inline-block pl-2 md:block md:pl-0">{company.bandwith}</p>
+            </div>
+            <div className="w-full md:w-[25%]">
+                <p className="font-light inline-block md:block">Agreements</p>
+                <p className="font-semibold inline-block pl-2 md:block md:pl-0">{company.agreement}</p>
+            </div>
+            <div className="w-full md:w-[25%]">
+                <p className="font-light inline-block md:block">Renewal Terms</p>
+                <p className="font-semibold inline-block pl-2 md:block md:pl-0">{company.renevalTerms}</p>
             </div>
         </div>
     </div>

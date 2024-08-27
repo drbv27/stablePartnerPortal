@@ -87,7 +87,7 @@ const ReactPdffc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalF
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <View  style={{width:'50%'}}>
                 <Text style={{fontSize:'10px',fontWeight:'light',color:'#696969'}}>Account Manger</Text>
-                <Text style={{fontSize:'12px',fontWeight:'bold'}}>Andrew Scott</Text>
+                <Text style={{fontSize:'12px',fontWeight:'bold'}}>Matt Salas</Text>
               </View>
               <View  style={{width:'50%'}}>
                 <Text style={{fontSize:'10px',fontWeight:'light',color:'#696969'}}>REP ID</Text>
@@ -129,13 +129,21 @@ const ReactPdffc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalF
               </View>
             </View>
             <View style={{flexDirection: 'row', justifyContent: 'space-between',marginTop:'12px'}}>
-              <View  style={{width:'50%'}}>
+              <View  style={{width:'25%'}}>
                 <Text style={{fontSize:'10px',fontWeight:'light',color:'#696969'}}>Location Type</Text>
                 <Text style={{fontSize:'12px',fontWeight:'bold'}}>{company.locationType}</Text>
               </View>
-              <View  style={{width:'50%'}}>
+              <View  style={{width:'25%'}}>
                 <Text style={{fontSize:'10px',fontWeight:'light',color:'#696969'}}>Bandwith</Text>
                 <Text style={{fontSize:'12px',fontWeight:'bold'}}>{company.bandwith}</Text>
+              </View>
+              <View  style={{width:'25%'}}>
+                <Text style={{fontSize:'10px',fontWeight:'light',color:'#696969'}}>Agreement Terms</Text>
+                <Text style={{fontSize:'12px',fontWeight:'bold'}}>{company.agreement}</Text>
+              </View>
+              <View  style={{width:'25%'}}>
+                <Text style={{fontSize:'10px',fontWeight:'light',color:'#696969'}}>Renewal Terms</Text>
+                <Text style={{fontSize:'12px',fontWeight:'bold'}}>{company.renevalTerms}</Text>
               </View>
             </View>
           </View>
@@ -286,6 +294,11 @@ const ReactPdffc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalF
             <Text style={{ width: '17%', textAlign:'right', fontWeight:'bold',fontSize:'12px' }}>${(oneTimeTotal + oneTimeTax).toFixed(2)}</Text>
           </View>
 
+          <View style={{marginTop:'12px',border:'1pt solid #d3d3d3',width:'100%',padding:'5', borderRadius:'5px'}}>
+            <Text style={{fontSize:'12px',textAlign:'left',textDecoration:'underline',marginBottom:'4px'}}>Special Terms:</Text>
+            <Text  style={{fontSize:'10px',textAlign:'left'}}>{ specialTerms }</Text>
+          </View>
+
         </Page>
 
       {contract && contract.creditCard &&
@@ -340,48 +353,48 @@ const ReactPdffc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalF
           <View style={{marginTop:'16px'}}>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Image src={contract.signatureClient} style={{width:'50%',height:'auto'}}/>
+                <Image src={contract.signatureClient} style={{width:'90%',height:'auto',marginBottom:'-40px'}}/>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Authorized Signature for customer</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Authorized Signature for customer</Text>
               </View>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Image src={contract.signatureManager} style={{width:'50%',height:'auto'}}/>
+                <Image src={contract.signatureManager} style={{width:'90%',height:'auto',marginBottom:'-40px'}}/>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Authorized Signature for NEVTIS CORP</Text>
-              </View>
-            </View>
-            <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
-              <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>{contract.creditCard.fullName}</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Printed Name</Text>
-              </View>
-              <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Juan Olmedo</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Printed Name</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Authorized Signature for NEVTIS CORP</Text>
               </View>
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>_</Text>
+                <Text style={{fontSize:'12px'}}>{contract.creditCard.fullName}</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Title</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Printed Name</Text>
               </View>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>CEO</Text>
+                <Text style={{fontSize:'12px'}}>Juan Olmedo</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Title</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Printed Name</Text>
               </View>
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>{contract.signDate.substring(0,10)}</Text>
+                <Text style={{fontSize:'12px'}}>_</Text>
+                <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Title</Text>
+              </View>
+              <View style={{width:'50%',textAlign:'center'}}>
+                <Text style={{fontSize:'12px'}}>VP of Operations</Text>
+                <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Title</Text>
+              </View>
+            </View>
+            <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
+              <View style={{width:'50%',textAlign:'center'}}>
+                <Text style={{fontSize:'12px'}}>{contract.signDate.substring(0,10)}</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>Date Signed</Text>
               </View>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>{contract.signDate.substring(0,10)}</Text>
+                <Text style={{fontSize:'12px'}}>{contract.signDate.substring(0,10)}</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>Date Signed</Text>
               </View>
@@ -417,7 +430,7 @@ const ReactPdffc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalF
           
 
           <View style={{marginTop:'16px'}}>
-            <Text style={{fontSize:'12px',marginBottom:'4px'}}>Signature Disclosure</Text>
+            <Text style={{fontSize:'12px',marginBottom:'4px'}}>Signature Disclosure...</Text>
             <Text style={{fontSize:'10px',color:'#808080'}}>By signin and accepting below you are acknowledging that you have read and agree to the terms and conditions outlined in this document.</Text>
             <Text style={{textAlign:'center',textDecoration:'underline',marginBottom:'4px'}}>Agreement</Text>
             <Text  style={{fontSize:'10px',color:'#808080',textAlign:'center'}}>THIS SERVICE AGREEMENT AND SERVICE ORDER HEREBY INCORPOORTE BY REFERENCE THE TERMS AND CONDITIONS (AVAILABLE AT https://www.nevtis.com/legal), A COPY OF WHICH WILL BE PROVIDED TO CUSTOMER UPON REQUEST. BY EXECUTING THIS DOCUMENT BELOW, CUSTOMER ACKNOLEDGES THAT: (1) CUSTOMER ACCEPTS TO BE BOUND BY THER TERMS AND CONDITIONS, INCLUDING SECTION 21 THEREOF, WHICH PROVIDES TAHT THE PARTIES DESIRE TO RESOLVE DISPUTES RELATING TO THE PROVIDERS MASTER AGREEMENT THROUGH ARBITRATION; AND (2) BY AGREEING TO ARBITRATION, CUSTOMER IS GIVING UP VARIOUS RIGHTS, INCLUDING THE RIGHT TO TRIAL BY JURY.</Text>
@@ -426,50 +439,50 @@ const ReactPdffc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalF
           <View style={{marginTop:'16px'}}>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Image src={contract.signatureClient} style={{width:'50%',height:'auto',marginLeft:'auto',marginRight:'auto'}}/>
+                <Image src={contract.signatureClient} style={{width:'90%',height:'auto',marginLeft:'auto',marginRight:'auto',marginBottom:'-40px'}}/>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Authorized Signature for customer</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Authorized Signature for customer</Text>
               </View>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Image src={contract.signatureManager} style={{width:'50%',height:'auto',marginLeft:'auto',marginRight:'auto'}}/>
+                <Image src={contract.signatureManager} style={{width:'90%',height:'auto',marginLeft:'auto',marginRight:'auto',marginBottom:'-40px'}}/>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Authorized Signature for NEVTIS CORP</Text>
-              </View>
-            </View>
-            <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
-              <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'1px'}}>{company.name} {company.lastname}</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Printed Name</Text>
-              </View>
-              <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'1px'}}>Juan Olmedo</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Printed Name</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Authorized Signature for NEVTIS CORP</Text>
               </View>
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'1px'}}>_</Text>
+                <Text style={{fontSize:'12px'}}>{company.name} {company.lastname}</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Title</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Printed Name</Text>
               </View>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'1px'}}>CEO</Text>
+                <Text style={{fontSize:'12px'}}>Juan Olmedo</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Title</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Printed Name</Text>
               </View>
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'1px'}}>{contract.signDate.substring(0,10)}</Text>
+                <Text style={{fontSize:'12px'}}>_</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Date Signed</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Title</Text>
               </View>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'1px'}}>{contract.signDate.substring(0,10)}</Text>
+                <Text style={{fontSize:'12px'}}>VP of Operations</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Date Signed</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Title</Text>
+              </View>
+            </View>
+            <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
+              <View style={{width:'50%',textAlign:'center'}}>
+                <Text style={{fontSize:'12px'}}>{contract.signDate.substring(0,10)}</Text>
+                <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Date Signed</Text>
+              </View>
+              <View style={{width:'50%',textAlign:'center'}}>
+                <Text style={{fontSize:'12px'}}>{contract.signDate.substring(0,10)}</Text>
+                <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Date Signed</Text>
               </View>
             </View>
           </View>
@@ -505,56 +518,55 @@ const ReactPdffc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalF
           <View style={{marginTop:'16px'}}>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Image src={contract.signatureClient} style={{width:'50%',height:'auto',marginLeft:'auto',marginRight:'auto'}}/>
+                <Image src={contract.signatureClient} style={{width:'90%',height:'auto',marginLeft:'auto',marginRight:'auto',marginBottom:'-40px'}}/>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Authorized Signature for customer</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Authorized Signature for customer</Text>
               </View>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Image src={contract.signatureManager} style={{width:'50%',height:'auto',marginLeft:'auto',marginRight:'auto'}}/>
+                <Image src={contract.signatureManager} style={{width:'90%',height:'auto',marginLeft:'auto',marginRight:'auto',marginBottom:'-40px'}}/>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Authorized Signature for NEVTIS CORP</Text>
-              </View>
-            </View>
-            <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
-              <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'1px'}}>{company.name} {company.lastname}</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Printed Name</Text>
-              </View>
-              <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'1px'}}>Juan Olmedo</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Printed Name</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Authorized Signature for NEVTIS CORP</Text>
               </View>
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'1px'}}>_</Text>
+                <Text style={{fontSize:'12px'}}>{company.name} {company.lastname}</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Title</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Printed Name</Text>
               </View>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'1px'}}>CEO</Text>
+                <Text style={{fontSize:'12px'}}>Juan Olmedo</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Title</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Printed Name</Text>
               </View>
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'1px'}}>{contract.signDate.substring(0,10)}</Text>
+                <Text style={{fontSize:'12px'}}>_</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Date Signed</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Title</Text>
               </View>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px',marginBottom:'1px'}}>{contract.signDate.substring(0,10)}</Text>
+                <Text style={{fontSize:'12px'}}>VP of Operations</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
-                <Text style={{fontSize:'12px',marginBottom:'4px'}}>Date Signed</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Title</Text>
+              </View>
+            </View>
+            <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
+              <View style={{width:'50%',textAlign:'center'}}>
+                <Text style={{fontSize:'12px'}}>{contract.signDate.substring(0,10)}</Text>
+                <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Date Signed</Text>
+              </View>
+              <View style={{width:'50%',textAlign:'center'}}>
+                <Text style={{fontSize:'12px'}}>{contract.signDate.substring(0,10)}</Text>
+                <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
+                <Text style={{fontSize:'12px',marginBottom:'14px'}}>Date Signed</Text>
               </View>
             </View>
           </View>
         </Page>
       }
-
     </Document>
   )
 }

@@ -11,11 +11,11 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import PaymentInfo from "./PaymentInfo";
 
 const ContractPage = ({data,id,contract}:any) => {
-  console.log(contract)
-  console.log(data)
+  //console.log(contract)
+  //console.log(data)
   return (
     <div className='w-[97vw] flex flex-col md:flex-row p-8 overflow-y-auto'>
-      <div className='w-full md:w-4/5'>
+{/*       <div className='w-full md:w-4/5'>
         <ContractHeader />
         <ContractInfo company={data.company}/>
         <MonthlyContract data={data}/>
@@ -24,40 +24,13 @@ const ContractPage = ({data,id,contract}:any) => {
         <div className="w-full border border-gray-300 mt-4 p-4 rounded-md">
           <SpecialTerms specialTerms={data.specialTerms}/>
         </div>
-{/*         <div className="flex flex-col md:flex-row">
-          <div>
-            <img src={contract.signatureClient} alt="signature" />
-            <hr />
-            <p>{`${data.company.name} ${data.company.lastname}`}</p>
-          </div>
-          <div>
-            <img src={contract.Manager} alt="signature" />
-            <hr />
-            <p>Juan Olmedo</p>
-          </div>
-        </div> */}
-{/*         <div className='mt-4'>
-          <Tabs>
-            <TabList>
-              <Tab>Sign Here</Tab>
-              <Tab>Send Email</Tab>
-            </TabList>
-            <TabPanel>
-              <PaymentInfo id={data._id} company={data.company}/>
-            </TabPanel>
-            <TabPanel>
-              <h2>SEND EMAIL COMPONENT</h2>
-            </TabPanel>
-          </Tabs>
-        </div> */}
-
-      </div>
+      </div> */}
       {/* Render contract details or form */}
-      <div className='w-[90%] md:w-[20%] my-2'>
-            <div className='md:mt-4 border border-gray-200 py-2 md:py-4 rounded-md shadow-md'>
-                <h3 className='text-center text-sm mt-2 font-semibold'>Pdf file for Print? </h3>
+      <div className='w-[90%] my-2 mx-auto'>
+            <div className='md:mt-1 border border-gray-200 py-2 md:py-4 rounded-md shadow-md'>
+                <h3 className='text-center text-sm mt-2 font-semibold'>Download or print your contract. </h3>
                 <div className='p-2 shadow-lg bg-gray-50 border-gray-100 rounded-md hidden md:block'>
-                    <PDFViewer style={{ width: "100%", height: "30vh", padding:"1vw" }}>
+                    <PDFViewer style={{ width: "100%", height: "70vh", padding:"1vw" }} >
                         <ReactPdffinal
                         company={data.company} 
                         totalProducts={data.totalProducts}

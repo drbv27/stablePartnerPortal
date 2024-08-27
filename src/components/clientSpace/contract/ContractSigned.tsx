@@ -3,6 +3,7 @@ import { PDFViewer,pdf, PDFDownloadLink } from "@react-pdf/renderer";
 import ContractHeader from "./ContractHeader";
 import ContractInfo from "./ContractInfo";
 import ReactPdffinal from "./ReactPdffinal";
+import ReactPdfFC from "./ReactPdfFC";
 import MonthlyContract from "./MonthlyContract";
 import OneTimeContract from "./OneTimeContract";
 import SpecialTerms from "../quote/SpecialTerms";
@@ -31,21 +32,22 @@ const ContractPage = ({data,id,contract}:any) => {
                 <h3 className='text-center text-sm mt-2 font-semibold'>Download or print your contract. </h3>
                 <div className='p-2 shadow-lg bg-gray-50 border-gray-100 rounded-md hidden md:block'>
                     <PDFViewer style={{ width: "100%", height: "70vh", padding:"1vw" }} >
-                        <ReactPdffinal
-                        company={data.company} 
-                        totalProducts={data.totalProducts}
-                        totalEntrieProducts={data.totalEntrieProducts}
-                        totalUsers={data.totalUsers}
-                        totalFax={data.totalFax}
-                        totalConference={data.totalConference}
-                        specialTerms={data.specialTerms}
-                        contract={contract}
+                        <ReactPdfFC
+                            company={data.company} 
+                            totalProducts={data.totalProducts}
+                            totalEntrieProducts={data.totalEntrieProducts}
+                            totalUsers={data.totalUsers}
+                            totalFax={data.totalFax}
+                            totalConference={data.totalConference}
+                            portNumbers={data.portNumbers}
+                            specialTerms={data.specialTerms}
+                            contract={contract}
                         />
                     </PDFViewer>
                 </div>
                 <div  className='mt-2 md:mt-4 text-center'>
                     <PDFDownloadLink
-                        document={<ReactPdffinal company={data.company} totalProducts={data.totalProducts} totalEntrieProducts={data.totalEntrieProducts} totalUsers={data.totalUsers} totalFax={data.totalFax} totalConference={data.totalConference} specialTerms={data.specialTerms} contract={contract} />}
+                        document={<ReactPdfFC company={data.company} totalProducts={data.totalProducts} totalEntrieProducts={data.totalEntrieProducts} totalUsers={data.totalUsers} totalFax={data.totalFax} totalConference={data.totalConference} portNumbers={data.portNumbers} specialTerms={data.specialTerms} contract={contract} />}
                         fileName="contract.pdf"
                         style={{
                             textDecoration: "none",

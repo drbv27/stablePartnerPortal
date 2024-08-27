@@ -3,7 +3,7 @@ import { FaCreditCard } from "react-icons/fa6";
 import { RiBankFill } from "react-icons/ri";
 import AproveContract from "./AproveContract";
 const PaymentContract = ({contract}:any) => {
-    //console.log(contract)
+    console.log(contract)
     if(contract.creditCard){
         const formattedCardNumber = contract.creditCard.cardNumber.match(/.{1,4}/g).join('-');
         return(

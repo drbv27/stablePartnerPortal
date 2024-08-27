@@ -47,7 +47,7 @@ const ContractFinal = ({data,id,contract}:any) => {
                   <p className="mt-1">{data.company.name} {data.company.lastname}</p>
                   <hr className="h-[2px] bg-black w-full" />
                   <small>Printed name</small>
-                  <p className="mt-1">{data.company.name} {data.company.lastname}</p>
+                  <p className="mt-1"> - </p>
                   <hr className="h-[2px] bg-black w-full" />
                   <small>Title</small>
                   <p className="mt-1">{contract.signDate.substring(0,10)}</p>
@@ -64,7 +64,7 @@ const ContractFinal = ({data,id,contract}:any) => {
                   <p className="mt-1">Juan Olmedo</p>
                   <hr className="h-[2px] bg-black w-full" />
                   <small>Printed name</small>
-                  <p className="mt-1">CEO</p>
+                  <p className="mt-1">VP of Operations</p>
                   <hr className="h-[2px] bg-black w-full" />
                   <small>Title</small>
                   <p className="mt-1">{contract.signDate.substring(0,10)}</p>
@@ -96,7 +96,7 @@ const ContractFinal = ({data,id,contract}:any) => {
                 <p className="mt-1">{data.company.name} {data.company.lastname}</p>
                 <hr className="h-[2px] bg-black w-full" />
                 <small>Printed name</small>
-                <p className="mt-1">{data.company.name} {data.company.lastname}</p>
+                <p className="mt-1"> - </p>
                 <hr className="h-[2px] bg-black w-full" />
                 <small>Title</small>
                 <p className="mt-1">{contract.signDate.substring(0,10)}</p>
@@ -113,7 +113,7 @@ const ContractFinal = ({data,id,contract}:any) => {
                 <p className="mt-1">Juan Olmedo</p>
                 <hr className="h-[2px] bg-black w-full" />
                 <small>Printed name</small>
-                <p className="mt-1">CEO</p>
+                <p className="mt-1">VP of Operations</p>
                 <hr className="h-[2px] bg-black w-full" />
                 <small>Title</small>
                 <p className="mt-1">{contract.signDate.substring(0,10)}</p>
@@ -141,7 +141,7 @@ const ContractFinal = ({data,id,contract}:any) => {
                 <p className="mt-1">{data.company.name} {data.company.lastname}</p>
                 <hr className="h-[2px] bg-black w-full" />
                 <small>Printed name</small>
-                <p className="mt-1">{data.company.name} {data.company.lastname}</p>
+                <p className="mt-1"> - </p>
                 <hr className="h-[2px] bg-black w-full" />
                 <small>Title</small>
                 <p className="mt-1">{contract.signDate.substring(0,10)}</p>
@@ -158,7 +158,7 @@ const ContractFinal = ({data,id,contract}:any) => {
                 <p className="mt-1">Juan Olmedo</p>
                 <hr className="h-[2px] bg-black w-full" />
                 <small>Printed name</small>
-                <p className="mt-1">CEO</p>
+                <p className="mt-1">VP of Operations</p>
                 <hr className="h-[2px] bg-black w-full" />
                 <small>Title</small>
                 <p className="mt-1">{contract.signDate.substring(0,10)}</p>

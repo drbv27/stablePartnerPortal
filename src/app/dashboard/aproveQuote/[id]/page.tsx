@@ -22,6 +22,7 @@ export default async function approvedQuotePage({params}: Props){
     }
     
 
+    console.log(contract)
     return (
       
         <div className="h-[99vh] overflow-y-auto">
