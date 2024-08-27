@@ -377,7 +377,7 @@ const ReactPdffc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalF
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px'}}>_</Text>
+                <Text style={{fontSize:'12px'}}>{contract.creditCard.title || '-'}</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
                 <Text style={{fontSize:'12px',marginBottom:'14px'}}>Title</Text>
               </View>
@@ -463,7 +463,7 @@ const ReactPdffc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalF
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px'}}>_</Text>
+                <Text style={{fontSize:'12px'}}>{contract.bankTransfer.title || '-'}</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
                 <Text style={{fontSize:'12px',marginBottom:'14px'}}>Title</Text>
               </View>
@@ -542,7 +542,7 @@ const ReactPdffc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalF
             </View>
             <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:'16px'}}>
               <View style={{width:'50%',textAlign:'center'}}>
-                <Text style={{fontSize:'12px'}}>_</Text>
+                <Text style={{fontSize:'12px'}}>{contract.billMeLater.title || '-'}</Text>
                 <Text style={{fontSize:'12px',marginBottom:'4px'}}>_________________________________</Text>
                 <Text style={{fontSize:'12px',marginBottom:'14px'}}>Title</Text>
               </View>
