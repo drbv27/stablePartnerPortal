@@ -8,6 +8,7 @@ import { SiVisa, SiMastercard,SiDiscover,SiAmericanexpress } from 'react-icons/s
 import SignaturePad from 'react-signature-pad-wrapper'
 
 import toast, { Toaster } from 'react-hot-toast';
+import { title } from 'process';
 
 const notify = () => toast.success('Thank you contract sent successfully',{
   duration: 4000,
@@ -74,6 +75,7 @@ const CreditCard = ({id,company}) => {
       const dataToSend = {
         creditCard:{
           fullName: data.cardName,
+          title: data.title,
           businessAddress: data.businesAddress,
           cardNumber: data.cardNumber,
           expirationMonth: data.expMonth,
@@ -116,6 +118,12 @@ const CreditCard = ({id,company}) => {
     <div className='flex gap-2 text-xl'>Credit Card Authorization <span className='flex gap-1 text-2xl'><SiVisa className='text-indigo-800'/><SiMastercard className='text-red-500'/><SiDiscover className='text-orange-500'/><SiAmericanexpress className='text-blue-500'/></span></div>
     <div><h3 className='text-sm'>By signin this form, you give us permision to bill your credit card, listed below, as specified in this service agreement.</h3></div>
     <form className='p-1' onSubmit={handleSubmit(onSubmit)}>
+      <div className='py-1'>
+        <label htmlFor="title">Title</label>
+        <input {...register('title',{ required:true,minLength:2 })} type="text" placeholder='Your Title' className='border border-gray-300 p-1 w-full'/>
+        {errors.title && <span className='text-red-500 text-xs'>This field is required</span>}
+      </div>
+
       <div className='py-1'>
         <label htmlFor="cardName">Full name on Card</label>
         <input {...register('cardName',{ required:true,minLength:7 })} type="text" placeholder='Name of card holder' className='border border-gray-300 p-1 w-full'/>

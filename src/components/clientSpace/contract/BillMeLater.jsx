@@ -74,10 +74,10 @@ const BillMeLater = ({id,company}) => {
       const businessAddress = isChecked ? data.businessAddress : `${company.address}, ${company.city}, ${company.state}, ${company.zip}`;
       const dataToSend = {
         billMeLater:{
+          title: data.title,
           fullName: fullname,
           businessAddress: businessAddress,
           ipAddress: data.ipAddress
-          /* ipAddress: data.ipAddress */
         },
         sendEmail: false,
         contractStatus: 'signed',
@@ -112,18 +112,23 @@ const BillMeLater = ({id,company}) => {
       <label className='ml-2'>Check if the Invoice information is not the same in quote</label>
 
       <form className='p-1' onSubmit={handleSubmit(onSubmit)}>
+      <div className='py-1'>
+        <label htmlFor="title">Title</label>
+        <input {...register('title',{ required:true,minLength:2 })} type="text" placeholder='Your Title' className='border border-gray-300 p-1 w-full'/>
+        {errors.title && <span className='text-red-500 text-xs'>This field is required</span>}
+      </div>
       {isChecked &&(
         <>
           <div className='py-1'>
             <label htmlFor="fullname">Invoice Name</label>
             <input {...register('fullname',{ required:true,minLength:7 })} type="text" placeholder='The Invoice name' className='border border-gray-300 p-1 w-full'/>
-            {errors.cardName && <span className='text-red-500 text-xs'>This field is required</span>}
+            {errors.fullname && <span className='text-red-500 text-xs'>This field is required</span>}
           </div>
 
           <div className='py-1'>
             <label htmlFor="businessAddress">Business Address</label>
             <input {...register('businessAddress',{ required:true,minLength:16 })} type="text" placeholder='Your business address' className='border border-gray-300 p-1 w-full'/>
-            {errors.cardNumber && <span className='text-red-500 text-xs'>This field is required</span>}
+            {errors.businessAddress && <span className='text-red-500 text-xs'>This field is required</span>}
           </div>
         </>
       )}

@@ -74,6 +74,7 @@ const BankTransfer = ({id,company}) => {
       data.signature = signatureData;
       const dataToSend = {
         bankTransfer:{
+          title: data.title,
           bankName: data.bankName,
           accountNumber: data.accountNumber,
           routingNumber: data.routingNumber,
@@ -109,6 +110,12 @@ const BankTransfer = ({id,company}) => {
     <div className='flex gap-2 text-xl'>Bank Tranfer Information </div>
     <div><h3 className='text-sm'>By signin this form, you give us permision to verify your bank information, listed below, as specified in this service agreement.</h3></div>
     <form className='p-1' onSubmit={handleSubmit(onSubmit)}>
+    <div className='py-1'>
+        <label htmlFor="title">Title</label>
+        <input {...register('title',{ required:true,minLength:2 })} type="text" placeholder='Your Title' className='border border-gray-300 p-1 w-full'/>
+        {errors.title && <span className='text-red-500 text-xs'>This field is required</span>}
+      </div>
+
       <div className='py-1'>
         <label htmlFor="bankName">Bank Name</label>
         <input {...register('bankName',{ required:true,minLength:7 })} type="text" placeholder='The name of your bank' className='border border-gray-300 p-1 w-full'/>
