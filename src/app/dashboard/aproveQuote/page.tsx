@@ -1,20 +1,26 @@
 import ApprovedsTable from "@/components/ApprovedsTable";
-/* import QuotesTable from "@/components/QuotesTable"; */
-import { getQuotes } from "@/actions/quotes/quotes-actions"
-
-
-
+import { getQuotes } from "@/actions/quotes/quotes-actions";
 
 const AproveQuotePage = async () => {
-  const {quotes} = await  getQuotes();
-  //console.log("quotes",quotes)
+  try {
+    const { quotes } = await getQuotes();
 
-  return (
-    <div>
-      <h1 className="text-center text-2xl font semibold">Quotes to be approved</h1>
-        <ApprovedsTable quotes={quotes}/>
-    </div>
-  )
+    if (!quotes || quotes.length === 0) {
+      return <div>No quotes available for approval</div>;
+    }
+
+    return (
+      <div className="p-4">
+        <h1 className="text-center text-xl text-orange-900 font-bold mb-1">
+          Quotes to be approved
+        </h1>
+        <ApprovedsTable quotes={quotes} />
+      </div>
+    );
+  } catch (error) {
+    console.error("Error fetching quotes:", error);
+    return <div>Error loading quotes</div>;
   }
-  
-  export default AproveQuotePage
+};
+
+export default AproveQuotePage;

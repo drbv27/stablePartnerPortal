@@ -1,37 +1,30 @@
-import ContractsTable from "@/components/ContractsTable"
-import { getContracts } from "@/actions/payments/payment-actions"
+import ContractsTable from "@/components/ContractsTable";
+import { getContracts } from "@/actions/payments/payment-actions";
 import { getQuotes } from "@/actions/quotes/quotes-actions";
 
-const downloadContractsPage = async () => {
+const DownloadContractsPage = async () => {
+  try {
+    const [{ contracts }, { quotes }] = await Promise.all([
+      getContracts(),
+      getQuotes(),
+    ]);
 
-    const {contracts} = await getContracts();
-    const {quotes} = await getQuotes();
-    //console.log("contracts",contracts)
-
-  return (
-    <ContractsTable quotes={quotes}/>
-  )
-}
-
-export default downloadContractsPage
-
-
-
-/* import QuotesTable from "@/components/QuotesTable";
-import { getQuotes } from "@/actions/quotes/quotes-actions"
-
-
-const ManageQuotePage = async () => {
-
-    const {quotes} = await  getQuotes();
-    console.log("quotes",quotes)
+    if (!quotes || quotes.length === 0) {
+      return <div>No quotes available</div>;
+    }
 
     return (
-      <div>
-        <h1 className="text-2xl text-center text-orange-700 font-semibold">Manage Quotes</h1>
-          <QuotesTable quotes={quotes}/>
-      </div>
-    )
+      <>
+        <h2 className="text-center text-lg font-bold text-orange-900">
+          Contracts Page
+        </h2>
+        <ContractsTable quotes={quotes} />
+      </>
+    );
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return <div>Error loading data</div>;
   }
-  
-  export default ManageQuotePage */
+};
+
+export default DownloadContractsPage;
