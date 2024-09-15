@@ -22,7 +22,7 @@ interface Entrie {
   taxes?: boolean;
 }
 
-const ReactPdfc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalFax,totalConference,portNumbers,specialTerms}:any) => {
+const ReactPdfc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalFax,totalConference,portNumbers,specialTerms, updatedAt, validUntil}:any) => {
 
   let monthlyTotal = 0;
   let oneTimeTotal = 0;
@@ -88,8 +88,8 @@ const ReactPdfc = ({company,totalProducts,totalEntrieProducts,totalUsers,totalFa
         <Text>Proposal #102021</Text>
         <View style={{borderTop: "1pt solid lightgray", marginTop: 10, marginBottom: 10}} />
         <Text>Service address: {`${company?.address}`}</Text>
-        <Text>Proposal Date: 10/21/2021</Text>
-        <Text>Valid Until: 11/21/2021</Text>
+        <Text>Proposal Date: {updatedAt}</Text>
+        <Text>Valid Until: {validUntil}</Text>
         <Text>Location Type: {`${company?.locationType}`}</Text>
         <Text>Site Analysis: {company?.siteAnalysis}</Text>
         <Text>Bandwith: {company?.bandwith}</Text>

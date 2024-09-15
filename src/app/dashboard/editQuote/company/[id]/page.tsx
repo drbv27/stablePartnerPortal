@@ -13,6 +13,7 @@ interface Props {
 const EditCompanypage = async ({params}: Props) => {
     const {quote} = await getQuote(params.id);
     console.log(params.id)
+    console.log(quote)
   return (
     <>
       <TopbarEdit id={params.id}/>

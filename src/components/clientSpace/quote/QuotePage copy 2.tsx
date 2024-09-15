@@ -15,11 +15,14 @@ import { updateStatus } from '@/actions/clientSpace/clientspace-actions';
 import { useRouter } from 'next/navigation';
 import { updateQuote } from '@/actions/quotes/quotes-actions';
 import { getSellerUsers } from '@/actions/users/users-actions';
-import Link from 'next/link';
 
 const QuotePage = ({data, id}: any) => {
     const router = useRouter();
-    //console.log(data)
+   /*  const sellers = getSellerUsers
+    console.log(sellers) */
+    console.log(data)
+    
+    
     
     if (!data) {
         return <div>Loading...</div>;
@@ -40,36 +43,17 @@ const QuotePage = ({data, id}: any) => {
     const validUntil = new Date(updatedAt);
     validUntil.setDate(validUntil.getDate() + 30);
 
-    // MODIFICACIÓN PARA FORZAR LA EXPIRACIÓN
-    // Cambia este valor a true para simular una cotización vencida
-    const forceExpiration = true;
-
     // Calculate the difference in days
     const currentDate = new Date();
-    let diffDays;
-    if (forceExpiration) {
-        diffDays = 31; // Forzar a que hayan pasado más de 30 días
-    } else {
-        const diffTime = Math.abs(currentDate.getTime() - updatedAt.getTime());
-        diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    }
+    const diffTime = Math.abs(currentDate.getTime() - updatedAt.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     // If the quote is more than 30 days old
     if (diffDays > 30) {
         return (
-            <div className='mx-[10vw] md:mx-[25vw] mt-[10vh] md:mt-[20vh] bg-slate-50 rounded-md shadow-2xl p-8'>
-                <div>
-                    <Link href="https://nevtis.com/" className='flex justify-center'>
-                        <img src="/logo2.png" alt="logo" width="200px" height="30px"/>
-                    </Link>
-                </div>
+            <div className='mx-[10vw] md:mx-[25vw] mt-[10vh] md:mt-[20vh] bg-slate-200 rounded-md shadow-2xl p-4'>
                 <h2 className='text-2xl text-center text-orange-500 font-semibold'>Quote has Expired</h2>
-                <p className='text-center'>Your quote has expired.</p>
-                <p className='text-center'>Please reach out <i className='font-semibold'>Matt Salas</i> for more information</p>
-                <p className='text-center'>on your quote <span className='text-lg text-orange-800 font-semibold'>{data.quoteNo}</span>.</p>
-                <Link href="https://nevtis.com/">
-                    <img src="/footer-revolution.png" alt="footer" />
-                </Link>
+                <p className='text-center'>Your quote has expired. Please reach out Matt Salas for more information on your quote {data.quoteNo}.</p>
             </div>
         );
     }
