@@ -17,9 +17,10 @@ import { updateQuote } from '@/actions/quotes/quotes-actions';
 import { getSellerUsers } from '@/actions/users/users-actions';
 import Link from 'next/link';
 
-const QuotePage = ({data, id}: any) => {
+const QuotePage = ({data, id,seller}: any) => {
     const router = useRouter();
     //console.log(data)
+    //console.log(seller)
     
     if (!data) {
         return <div>Loading...</div>;
@@ -42,7 +43,7 @@ const QuotePage = ({data, id}: any) => {
 
     // MODIFICACIÓN PARA FORZAR LA EXPIRACIÓN
     // Cambia este valor a true para simular una cotización vencida
-    const forceExpiration = true;
+    const forceExpiration = false;
 
     // Calculate the difference in days
     const currentDate = new Date();
@@ -65,7 +66,7 @@ const QuotePage = ({data, id}: any) => {
                 </div>
                 <h2 className='text-2xl text-center text-orange-500 font-semibold'>Quote has Expired</h2>
                 <p className='text-center'>Your quote has expired.</p>
-                <p className='text-center'>Please reach out <i className='font-semibold'>Matt Salas</i> for more information</p>
+                <p className='text-center'>Please reach out <i className='font-semibold'>{seller.name}</i><span className='text-xs'>{seller.email}</span> for more information</p>
                 <p className='text-center'>on your quote <span className='text-lg text-orange-800 font-semibold'>{data.quoteNo}</span>.</p>
                 <Link href="https://nevtis.com/">
                     <img src="/footer-revolution.png" alt="footer" />
@@ -162,7 +163,7 @@ const QuotePage = ({data, id}: any) => {
             <div className='w-full md:w-[80%] md:mx-8 h-[75vh] md:h-[95vh] overflow-y-auto'>
                 <QuoteHeader companyName={data.company.companyName} quoteNo={data.quoteNo}/>
                 <hr />
-                <QuoteInfo data={data} updatedAt={formatDate(updatedAt)} validUntil={formatDate(validUntil)}/>
+                <QuoteInfo data={data} updatedAt={formatDate(updatedAt)} validUntil={formatDate(validUntil)} seller={seller}/>
                 <hr />
                 <h2 className='text-3xl text-center font-semibold mt-2 text-gray-500'>Proposed Services</h2>
                 <MonthlyValues data={data}/>
