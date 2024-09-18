@@ -2,7 +2,6 @@ import { useState,useRef,useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { updateStatus,createPayment } from '@/actions/clientSpace/clientspace-actions'
 import { useRouter } from 'next/navigation';
-
 import { SiVisa, SiMastercard,SiDiscover,SiAmericanexpress } from 'react-icons/si';
 import SignaturePad from 'react-signature-pad-wrapper'
 import toast, { Toaster } from 'react-hot-toast';

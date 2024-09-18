@@ -14,7 +14,6 @@ export default async function QuotePageC({params}: Props) {
   
   const {quote} = await getQuote(params.id);
   //console.log(params.id)
-
   //console.log(quote);
   return (
     <div className='w-full overflow-y-auto'>

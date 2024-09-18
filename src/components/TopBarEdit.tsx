@@ -1,15 +1,8 @@
 
-import Image from 'next/image'
-import { IoBrowsersOutline, IoCalculator, IoLogoReact, IoKeypadSharp } from 'react-icons/io5'
 import { FaFileCirclePlus, FaFileInvoice, FaFileCircleCheck, FaUserPlus, FaUserGear, FaBuildingCircleCheck, FaIdCard, FaSquarePhone, FaFile, FaCartShopping } from 'react-icons/fa6'
 import { BsShop } from 'react-icons/bs'
 import { IoPerson, IoKeypadOutline } from "react-icons/io5";
-import { LuClipboardEdit } from 'react-icons/lu'
-import SidebarMenuItem from './SidebarMenuItem'
 import TopbarMenuItem from './TopbarMenuItem'
-
-
-
 
 const TopbarEdit = ({id}:any) => {
   const menuItems = [

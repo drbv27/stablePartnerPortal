@@ -1,6 +1,3 @@
-
-/* import headerImage from '/nevtis-proposal-header4.png';
-import featuresImage from '/features.png'; */
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'

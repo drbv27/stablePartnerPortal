@@ -1,7 +1,6 @@
 import React from 'react'
 import { getQuote } from "@/actions/quotes/quotes-actions";
 import EditCompanyForm from '@/components/editQuote/EditCompanyForm';
-import Topbar from '@/components/TopBar';
 import TopbarEdit from '@/components/TopBarEdit';
 
 interface Props {

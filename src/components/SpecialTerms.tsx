@@ -27,7 +27,6 @@ const SpecialTerms = ({especialTerms}: {especialTerms: string}) => {
             timer: 1000
         })
     }
-
     //console.log(localTerms)
     //console.log(SpecialTerms)
 

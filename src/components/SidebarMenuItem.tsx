@@ -10,7 +10,6 @@ interface Props {
   subtitle?: string
 }
 
-
 const SidebarMenuItem = ({ path, icon, icon2, title, subtitle }:Props) => {
   const currentPath = usePathname()
   /* const firstPartOfPath = '/' + path.split('/')[1]; */

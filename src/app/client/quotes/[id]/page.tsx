@@ -2,9 +2,6 @@ import { Suspense } from 'react';
 import { getQuote } from "@/actions/quotes/quotes-actions";
 import QuotePage from '@/components/clientSpace/quote/QuotePage';
 import { notFound } from 'next/navigation';
-import { MdContactEmergency, MdContactMail, MdContactPhone, MdDomain, MdSkipNext } from 'react-icons/md';
-import { FaCity, FaMapLocationDot, FaMapPin, FaFax, FaUsersLine, FaCircleMinus, FaCirclePlus } from 'react-icons/fa6';
-import { IoPerson } from "react-icons/io5";
 
 interface Props {
   params: {

@@ -1,11 +1,9 @@
 "use client";
 import { FormEvent, useState } from "react";
-import { AxiosError } from "axios";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FaSpinner } from "react-icons/fa6";
-import { set } from 'mongoose';
 import Image from "next/image";
 
 function Signin() {

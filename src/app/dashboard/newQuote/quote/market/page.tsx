@@ -1,8 +1,6 @@
 import { ProductGrid } from "@/components/ProductGrid";
 import { Title } from "@/components/Title";
 import { initialData } from "@/seed/seed";
-import { Product, Category } from "@/interfaces";
-
 import { getProducts } from "@/actions/products/product-actions";
 import NextButton from "@/components/NextButton";
 

@@ -14,7 +14,6 @@ import ReactPdfc from './ReactPdfc';
 import { updateStatus } from '@/actions/clientSpace/clientspace-actions';
 import { useRouter } from 'next/navigation';
 import { updateQuote } from '@/actions/quotes/quotes-actions';
-import { getSellerUsers } from '@/actions/users/users-actions';
 import Link from 'next/link';
 
 const QuotePage = ({data, id,seller}: any) => {

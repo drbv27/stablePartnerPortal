@@ -12,7 +12,6 @@ interface Props {
     };
   }
 
-
 export default async function approvedQuotePage({params}: Props){
     const {quote} = await getQuote(params.id);
     const contract = await getContract(params.id);
@@ -20,11 +19,8 @@ export default async function approvedQuotePage({params}: Props){
     if(!quote || !contract){
         return <div>Loading...</div>
     }
-    
-
-    console.log(contract)
+    //console.log(contract)
     return (
-      
         <div className="h-[99vh] overflow-y-auto">
           <CompanyContract company={quote.company} />
           <MonthlyContract quote={quote}/>

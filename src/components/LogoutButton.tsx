@@ -1,6 +1,5 @@
 'use client'
 
-
 import { useSession, signOut, signIn } from 'next-auth/react';
 import React from 'react'
 import { CiLogin, CiLogout } from 'react-icons/ci'

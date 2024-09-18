@@ -3,7 +3,6 @@ import { useState,useRef,useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { updateStatus,createPayment } from '@/actions/clientSpace/clientspace-actions'
 import { useRouter } from 'next/navigation';
-
 import { SiVisa, SiMastercard,SiDiscover,SiAmericanexpress } from 'react-icons/si';
 import SignaturePad from 'react-signature-pad-wrapper'
 import toast, { Toaster } from 'react-hot-toast';
@@ -24,7 +23,6 @@ const BankTransfer = ({id,company}) => {
     const [signatureData, setSignatureData] = useState(null);
     const { register, handleSubmit, control, formState: { errors } } = useForm();
     const router = useRouter();
-   /*  const createPaymentMutation = useCreatePayment(); */
   
     const saveSignature = () => {
       const quality = 0.5;
@@ -42,9 +40,6 @@ const BankTransfer = ({id,company}) => {
 
     const handleAccept = async () => {
       const updatedQuote = await updateStatus(id,'signed');
-/*       router.push(`/clientSpace/accept/${id}`);
-      console.log(updatedQuote)
-      updateQuoteStatus('signed'); */
     };
 
     const handleSendMail = async ({to,subject,htmlContent}) => {

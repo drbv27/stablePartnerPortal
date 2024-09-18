@@ -11,10 +11,6 @@ interface Props {
 const IndividualContractPage = async ({params}: Props) => {
     const {quote} = await getQuote(params.id);
     const contract = await getContract(params.id);
-
-
-    //console.log(quote)
-    //console.log(contract)
     
     return (
         <div className="h-[99vh] w-[85vw] overflow-y-auto">

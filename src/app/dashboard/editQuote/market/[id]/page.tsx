@@ -1,5 +1,4 @@
 import React from 'react'
-import { ProductGrid } from '@/components/ProductGrid';
 import { getProducts } from '@/actions/products/product-actions';
 import EditMarket from '@/components/editQuote/EditMarket';
 import { getQuote } from "@/actions/quotes/quotes-actions";

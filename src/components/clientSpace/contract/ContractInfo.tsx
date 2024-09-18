@@ -2,8 +2,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-
-
 const ContractInfo = ({company,dataAll}:any) => {
     const [sellers, setSellers] = useState(null);
     const [loading, setLoading] = useState(true);

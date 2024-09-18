@@ -7,8 +7,6 @@ import ReactPdfFC from "./ReactPdfFC";
 import MonthlyContract from "./MonthlyContract";
 import OneTimeContract from "./OneTimeContract";
 import SpecialTerms from "../quote/SpecialTerms";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import PaymentInfo from "./PaymentInfo";
 
 const ContractFinal = ({data,id,contract}:any) => {
   //console.log(data)
